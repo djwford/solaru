@@ -1,0 +1,74 @@
+
+    <script src="http://cdn.kendostatic.com/2013.3.1030/js/kendo.all.min.js"></script>
+
+            <div id="example" class="k-content">
+            <div id="gauge-container">
+                <div id="gauge"></div>
+
+                <input id="gauge-value" value="100">
+            </div>
+
+            <script>
+                function createGauge() {
+                    $("#gauge").kendoRadialGauge({
+
+                        pointer: {
+                            value: $("#gauge-value").val()
+                        },
+
+                        scale: {
+                            minorUnit: 5,
+                            startAngle: -30,
+                            endAngle: 210,
+                            max: 180
+                        }
+                    });
+                }
+
+                $(document).ready(function() {
+                    createGauge();
+
+                    function updateValue() {
+                        $("#gauge").data("kendoRadialGauge").value($("#gauge-value").val());
+                    }
+
+                    if (kendo.ui.Slider) {
+                        $("#gauge-value").kendoSlider({
+                            min: 0,
+                            max: 180,
+                            showButtons: false,
+                            change: updateValue
+                        });
+                    } else {
+                        $("#gauge-value").change(updateValue);
+                    }
+
+
+                    $(document).bind("kendo:skinChange", function(e) {
+                        createGauge();
+                    });
+                });
+            </script>
+
+            <style scoped>
+                #gauge-container {
+                    background: transparent url("assets/gauge-container-partial.png") no-repeat 50% 50%;
+                    width: 386px;
+                    height: 386px;
+                    text-align: center;
+                    margin: 0 auto 30px auto;
+                }
+
+                #gauge {
+                    width: 350px;
+                    height: 300px;
+                    margin: 0 auto;
+                }
+
+                #gauge-container .k-slider {
+                    margin-top: -11px;
+                    width: 140px;
+                }
+
+            </style>
+        </div>

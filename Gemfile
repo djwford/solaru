@@ -18,6 +18,8 @@ group :development do
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'guard-bundler'
   gem 'guard-rails'
+  gem 'guard-livereload', require: false
+  gem "rack-livereload"
   gem 'hub', :require=>nil
   gem 'quiet_assets'
   gem 'rails_layout'

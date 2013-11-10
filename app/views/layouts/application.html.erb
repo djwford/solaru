@@ -3,6 +3,16 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Solaru" %></title>
+
+    <!-- Common Kendo UI Web CSS -->
+    <%= stylesheet_link_tag "kendo.common.min.css" %>
+    <%= stylesheet_link_tag "kendo.default.min.css" %>
+    <%= javascript_include_tag asset_path("jquery.min.js") %>
+    <%#= javascript_include_tag asset_path("kendo.all.min.js") %>
+  
+ 
+
+
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Solaru" %>">
     <%= stylesheet_link_tag "application", media: "all" %>
     <%= javascript_include_tag "application" %>
@@ -11,7 +21,7 @@
   <body>
     <%# application layout styled for Twitter Bootstrap 3.0 %>
     <header>
-      <nav class="navbar navbar-default navbar-fixed-top">
+      <!-- <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -25,13 +35,12 @@
             <%= render 'layouts/navigation' %>
           </div>
         </div>
-      </nav>
+      </nav> -->
     </header>
     <main role="main">
       <div class="container">
          <div class="row">
            <div class="col-md-12">
-             <%= render 'layouts/messages' %>
              <%= yield %>
            </div>
          </div>
