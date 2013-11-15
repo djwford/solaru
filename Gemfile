@@ -13,6 +13,7 @@ gem 'figaro'
 gem 'pg'
 gem 'simple_form'
 gem 'unicorn'
+gem 'httparty'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
@@ -26,6 +27,7 @@ group :development do
   gem 'rb-fchange', :require=>false
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
+  # gem 'pry-rails'
 end
 group :development, :test do
   gem 'factory_girl_rails'

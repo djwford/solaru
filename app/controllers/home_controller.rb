@@ -8,4 +8,8 @@ class HomeController < ApplicationController
   #   render 'index'
   # end
   # end
+  def index
+    @data = SolarData.get_data('energy_lifetime').to_json
+  end
+  
 end

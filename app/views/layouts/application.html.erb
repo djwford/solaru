@@ -9,13 +9,12 @@
     <%= stylesheet_link_tag "kendo.default.min.css" %>
     <%= javascript_include_tag asset_path("jquery.min.js") %>
     <%#= javascript_include_tag asset_path("kendo.all.min.js") %>
-  
- 
-
-
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Solaru" %>">
-    <%= stylesheet_link_tag "application", media: "all" %>
+    <!--<link href="app/assets/stylesheets/application.css.scss" rel="stylesheet">-->
+
+     <% stylesheet_link_tag asset_path("application"), media: "all" %>
     <%= javascript_include_tag "application" %>
+    <%= yield :head %>
     <%= csrf_meta_tags %>
   </head>
   <body>
