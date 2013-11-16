@@ -1,17 +1,13 @@
 module SolarData
-   # baseURIo = 'https://api.enphaseenergy.com/api/systems/242524/'
 
-  def initialize
-    
+  def initialize 
   end
 
   def self.get_data(type)
     uri = URI("https://api.enphaseenergy.com/api/systems/242524/#{type}")
-    params = { :key => '40de436ba96bef946401fcf18a66f021' }
+    params = { :key => ENV["SOLAR_U_API_KEY"] }
     uri.query = URI.encode_www_form(params)
     res = Net::HTTP.get_response(uri)
-
-
     parsedResponse = JSON.parse(res.body)
     responseData = parsedResponse.values[2]
     
