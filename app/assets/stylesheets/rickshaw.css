@@ -23,7 +23,7 @@
 	padding: 6px;
 	opacity: 0.5;
 	border: 1px solid #e0e0e0;
-	font-size: 12px;
+	font-size: 20px;
 	position: absolute;
 	background: white;
 	white-space: nowrap;
@@ -39,7 +39,7 @@
 	z-index: 2;
 	border-radius: 3px;
 	padding: 0.25em;
-	font-size: 12px;
+	font-size: 20px;
 	font-family: Arial, sans-serif;
 	opacity: 0;
 	background: rgba(0, 0, 0, 0.4);
@@ -123,7 +123,8 @@
 }
 .rickshaw_graph .x_tick .title {
 	position: absolute;
-	font-size: 12px;
+	font-size: 25px;  
+	/*x axis font size*/
 	font-family: Arial, sans-serif;
 	opacity: 0.5;
 	white-space: nowrap;
