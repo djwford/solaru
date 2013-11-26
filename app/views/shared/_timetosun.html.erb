@@ -1,0 +1,50 @@
+
+
+
+<div id="countdownContainer"></div>
+<div id="nextEventTime"></div>
+<div id="time_remaining"></div>
+
+
+<script type="text/javascript">
+
+   $(document).ready(function () {
+    
+    var currentTime = new Date();
+    var times = SunCalc.getTimes(currentTime, 40.765, -111.8500);
+    var tomorrow = (currentTime.getTime() + (24 * 60 * 60 * 1000));
+    var tomorrowSunrise = (SunCalc.getTimes(new Date(tomorrow), 40.765, -111.8500).sunrise);
+    var timeSunset = new Date(times.sunset.getFullYear(), times.sunset.getMonth(), times.sunset.getDate(), times.sunset.getHours(), times.sunset.getMinutes(), times.sunset.getSeconds());
+    var timeSunrise = new Date(times.sunrise.getFullYear(), times.sunrise.getMonth(), times.sunrise.getDate(), times.sunrise.getHours(), times.sunrise.getMinutes(), times.sunrise.getSeconds());
+
+      
+    if(currentTime.getTime() < times.sunrise.getTime()) {  
+      renderGraph(timeSunrise, "Until Sunrise");
+      $('#nextEventTime').html('Time at next sunrise: ' + times.sunrise);
+   
+      } else if (currentTime.getTime() > times.sunrise.getTime() && currentTime < timeSunset) {
+      renderGraph(timeSunset, "Until Sunset"); 
+      $('#nextEventTime').html('Time at next sunset: ' + times.sunset);
+
+      } else if(currentTime.getTime() > times.sunset.getTime() && currentTime.getHours() <= 23 &&  currentTime > times.sunset) {
+      renderGraph(tomorrowSunrise, "Until Sunrise");
+      $('#nextEventTime').html('Time at next sunrise: ' + times.sunrise);
+
+      } else{
+        renderGraph(timeSunset, "else block");
+      }
+   
+     function renderGraph(time, event){ 
+        $('#countdownContainer').countdown({until: new Date(time), description: event, onExpiry: function(){
+          location.reload();
+        }});
+      }
+  });
+</script>
+
+ 
+
+ 
+ 
+ 
+ 

@@ -10,6 +10,12 @@ class HomeController < ApplicationController
   # end
   def index
     @energyLifetimeData = SolarData.get_energy_lifetime.to_json
+    @energyMonthlyData = SolarData.retrieve_monthly_data.to_json
+    @energyWeeklyData = SolarData.retrieve_weekly_data
    end
-  
+
+
+ 
+
+
 end

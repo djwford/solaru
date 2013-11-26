@@ -1,66 +1,74 @@
- 
 
 
-<div class = "row" id="topRow">
-    <div class = "col-md-4" id="powerProduction">
-      <%= render partial: 'shared/powerproduction' %>
-    </div>
-     <div class = "col-md-4">
-      <%= render partial: 'shared/powerconsumption' %>
-    </div>
-     <div class = "col-md-4">
-        <%= render partial: 'shared/co2' %>
-    </div>
-</div>
+<div class="container">
 
-<div class = "row">
-  <div class = "col-md-12">
-      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#carousel-example-generic" data-slide-to="0" data-interval="100" class="active"></li>
-      <li data-target="#carousel-example-generic" data-interval="100" data-slide-to="1"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="item active">
-        <%= image_tag(asset_path('graph.jpg'), :alt => "Promo Image") %>
-        <div class="carousel-caption">
-           
-        </div>
-      </div>
-   
-      <div class="item">
-        <%= image_tag(asset_path('graphtwo.gif'), :alt => "Promo Image") %>
-
-        <div class="carousel-caption">
-        
-        </div>
-      </div>
-
-
-    </div>
-
-    <!-- Controls -->
-    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-    </a>
-    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-    </a>
+  <div id="power_all_time"></div>
+<h1> Hello?</h1>
+<!--  _____________________________________top row_________________________________  -->
+<div class="row" id="topRow">  
+  <div class="col-md-4" id="powerProduction">
+    <%= render partial: 'shared/power_all_time' %>
   </div>
 
+  <div class="col-md-4">
+    <%= render partial: 'shared/monthly_production' %>
+  </div>
 
-
-  </div> 
+  <div class="col-md-4">
+    <%= render partial: 'shared/timetosun' %>
+  </div>
 </div>
 
+<!--  _____________________________________middle row -Carousel ______________________  -->
 
+ 
+          
 
-<div class = "row">
-<iframe id="forecast_embed" type="text/html" frameborder="0" height="245" width="45%" src="http://forecast.io/embed/#lat=40.7650&lon=-111.8500&name=University of Utah&color=#cc0000&text-color=#cc0000&font=helvetica"> </iframe>
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="5000">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active" id="current_production">
+      
+      <div class="carousel-caption">
+        Current Production
+      </div>
+    </div>
+
+    <div class="item" id="weekly_data">
+      <div class="carousel-caption">
+        Weekly Production
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
 </div>
+
+<!--  _____________________________________bottom row ______________________  -->
+
+  <div class="row">
+    <iframe id="forecast_embed" 
+      type="text/html" 
+      frameborder="0" 
+      height="245" 
+      width="45%" 
+      src="http://forecast.io/embed/#lat=40.7650&lon=-111.8500&name=University of Utah&color=#cc0000&text-color=#cc0000&font=helvetica"> 
+    </iframe>
+  </div>
 
 </div>
 

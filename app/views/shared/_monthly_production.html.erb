@@ -1,0 +1,29 @@
+
+
+ 
+<div id="monthly_data"></div>
+
+<script>
+
+var data = <%= raw(@energyMonthlyData)%>;
+
+var graph = new Rickshaw.Graph( {
+        element: document.querySelector("#monthly_data"),
+        width: 580,
+        height: 250,
+        series: [ {
+                color: 'steelblue',
+                data: data
+        } ]
+} );
+
+graph.render();
+
+</script>
+
+<!-- grab all of the powerProduced
+    shove them into an array
+    set a start index based on the first relevant month in the array
+    do basically what you did in power_all_time -->
+
+

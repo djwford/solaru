@@ -1,0 +1,58 @@
+$(function() {    
+     // current production -----------------------------------------------
+    new Highcharts.Chart({
+            chart: {
+              renderTo: "current_production",
+              type: 'area'
+            },
+            xAxis: {
+                type: "datetime"
+            },
+            yAxis: {
+              title: {
+                text: "Watt-Hours"
+              }
+            },
+
+            series: [
+                    {   
+                        name: "Yesterday's Production",
+                        pointInterval: <%= 300 * 1000 %>,
+                        pointStart: <%= (DailyProduction.last.for_day.to_i)*1000 %>,
+                        data: <%= DailyProduction.last.production_totals %>
+                    } 
+
+            ]       
+        });
+
+     // weeklyData -----------------------------------------------
+
+        new Highcharts.Chart({
+            chart: {
+              renderTo: "weekly_data",
+              type: 'spline'
+            },
+            xAxis: {
+                type: "datetime"
+            },
+            yAxis: {
+              title: {
+                text: "Watt-Hours"
+              }
+            },
+
+            series: [
+                    {   
+                        <% week = WeeklyData.last %>
+                        name: "Week of <%= week.forWeek %>",
+                        pointInterval: <%= 2400 * 1000 %>,
+                        pointStart: <%= (week.forWeek.beginning_of_day.to_i) * 1000 %>,
+                        data: <%= week.weeklyProduction.in_groups_of(8).map{|a| a.reduce(:+)} %>
+                      
+                    }
+            ]       
+        });
+
+             // current production -----------------------------------------------
+
+    });

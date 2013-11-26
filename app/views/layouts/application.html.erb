@@ -3,38 +3,19 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Solaru" %></title>
-
-    <!-- Common Kendo UI Web CSS -->
-    <%= stylesheet_link_tag "kendo.common.min.css" %>
-    <%= stylesheet_link_tag "kendo.default.min.css" %>
-    <%= javascript_include_tag asset_path("jquery.min.js") %>
-    <%#= javascript_include_tag asset_path("kendo.all.min.js") %>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Solaru" %>">
-    <!--<link href="app/assets/stylesheets/application.css.scss" rel="stylesheet">-->
-
-     <% stylesheet_link_tag asset_path("application"), media: "all" %>
+    <%= stylesheet_link_tag asset_path("application"), media: "all" %>
     <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "suncalc" %>
+    <%= stylesheet_link_tag asset_path("jquery.countdown.css") %> 
     <%= stylesheet_link_tag asset_path('rickshaw.css') %>
+    <%= javascript_include_tag "highcharts.js" %>
     <%= csrf_meta_tags %>
+    <%= javascript_include_tag "jquery.countdown.js" %>
+    <%= javascript_include_tag "home.js.erb" %>
   </head>
   <body>
-    <%# application layout styled for Twitter Bootstrap 3.0 %>
     <header>
-      <!-- <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-          </div>
-          <div class="collapse navbar-collapse">
-            <%= render 'layouts/navigation' %>
-          </div>
-        </div>
-      </nav> -->
     </header>
     <main role="main">
       <div class="container">
