@@ -13,9 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require d3.min
-//= require d3.layout.min
-//= require rickshaw
+
 
 
 

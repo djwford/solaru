@@ -11,13 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131125180226) do
+ActiveRecord::Schema.define(:version => 20131126172209) do
 
   create_table "daily_productions", :force => true do |t|
     t.datetime "for_day"
     t.text     "production_totals"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "energy_lifetime_arrays", :force => true do |t|
+    t.text     "raw_array"
+    t.text     "parsed_array"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "monthly_data", :force => true do |t|

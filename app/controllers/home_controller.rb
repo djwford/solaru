@@ -9,12 +9,15 @@ class HomeController < ApplicationController
   # end
   # end
   def index
-    @energyLifetimeData = SolarData.get_energy_lifetime.to_json
-    @energyMonthlyData = SolarData.retrieve_monthly_data.to_json
+    @energyLifetimeData = EnergyLifetimeArray.last.parsed_array
+    @energyMonthlyData = SolarData.retrieve_monthly_data
     @energyWeeklyData = SolarData.retrieve_weekly_data
+    @totalOutput = EnergyLifetimeArray.last.raw_array.reduce(:+)
+    @averageOutput = (@totalOutput.to_f / (EnergyLifetimeArray.last.raw_array.count.to_f))
+    @highestOutput = EnergyLifetimeArray.last.raw_array.max
+
    end
-
-
+ 
  
 
 

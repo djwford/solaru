@@ -1,0 +1,62 @@
+<!-- #        qty      watts       hours/unit    watt-hours
+# coffee    10     1200       0.0666667     80
+# toast      2     1300       0.0166667     22
+# waffle     1     1200       0.05          60
+# laptop     1     50         1             50
+# laundry    1     400/2500   0.5/0.583333  1658 
+# microwave  1     900        0.05          45 
+# movie      1     150        2             300
+# house      1     11,280/yr  x             11,280 -->
+
+<% total = @totalOutput %>
+<div>
+  <h4>In total, this array has produced enough energy to...</h4>
+  <table class="table">
+    <tr>
+      <th>Brew</th>
+      <td><%= number_with_delimiter( (total/ 80), :precision => 2, :delimeter => ',') %></td>
+      <td>Cups of Coffee </td>
+    </tr>
+
+    <tr>
+      <th>Burn</th>
+      <td><%= number_with_delimiter( (total/ 22), :precision => 2, :delimeter => ',') %></td>
+      <td>Slices of Toast</td>
+    </tr>
+
+    <tr>
+      <th>Make</th>
+      <td><%= number_with_delimiter( (total/ 60), :precision => 2, :delimeter => ',') %></td>
+      <td>Waffles</td>
+    </tr>
+
+    <tr>
+      <th>Run</th>
+      <td><%= number_with_delimiter( (total/ 50), :precision => 2, :delimeter => ',') %></td>
+      <td>Laptops for an hour</td>
+    </tr>
+
+    <tr>
+      <th>Wash and Dry</th>
+      <td><%= number_with_delimiter( (total/ 1658), :precision => 2, :delimeter => ',') %></td>
+      <td>Loads of Laundry</td>
+    </tr>
+
+    <tr>
+      <th>Microwave</th>
+      <td><%= number_with_delimiter( (total/ 45), :precision => 2, :delimeter => ',') %></td>
+      <td>Frozen Burritoes</td>
+    </tr>
+
+    <tr>
+      <th>Watch</th>
+      <td><%= number_with_delimiter( (total/ 300), :precision => 2, :delimeter => ',') %></td>
+      <td>Movies on a Flat-Screen TV</td>
+    </tr>
+    <tr>
+      <th>Power</th>
+      <td><%= number_with_delimiter( (total/ 11280), :precision => 2, :delimeter => ',') %></td>
+      <td>Homes for a Year</td>
+    </tr>
+  </table>
+</div>

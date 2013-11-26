@@ -1,31 +1,38 @@
- ☐ NOTE: In windows or Linux use ctrl instead of ⌘
 
-☐ ⌘ + enter or ⌘ + i: new task
-
-☐ ⌘ + d: toggle task as completed. You can also use your mouse to mark a task a completed. just hold down ⌘ (or ctrl if you're on Windows or Linux) and click the task. Clicking again will toggle the task back to the pending state.
-
+☐ ⌘ + d: toggle task as completed.
 ☐ alt + c: toggle task as cancelled.
-
 ☐ ⌘ + shift + a will archive the done tasks, by removing them from your list and appending them to the bottom of the file under Archive project
-
-☐ ⌘ + shift + u will open the url under the cursor in your default browser
-
 ☐ Anything with colon at the end of the line is a project title, you can also nest projects by indenting them.
   
 
   Solar U:
- ☐ translate all graphs into highcharts
-   ☐ remove all references to D3/rickshaw
-     ☐ you can do this by changing the input data to arrays of arrays 
+ ✔ translate all graphs into highcharts @done (13-11-25 18:30)
+   ✔ remove all references to D3/rickshaw @done (13-11-25 18:30)
+     ✔ you can do this by changing the input data to arrays of arrays @done (13-11-25 18:30)
+
+       ✔ the weekly comparison chart would be MUCH easier @done (13-11-25 22:10)
+         ✔ with HighCharts @done (13-11-25 22:10)
+         ✔ take a look at Scopes so you can show record-setting weeks @done (13-11-25 22:10)
+ ☐ after you have user models, add an if_user_signed_in so that the view for god mode doesnt have carousel navigation but the other one does:
+     <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+
+
      ☐ take a look at the time offsets and make sure that you are getting everything in the right timezone
        ☐ add a graphic to the sunset/rise countdown
-
+ ☐ change background based on time of day
  ☐ build out all of the features   6hours
  ☐ style the features
  ☐ test/refactor
+   ☐ redo your API calls to make them more DRY
  ☐ deploy
 
-       Features
+      Build Out Features
        ☐ Graphs
              ☐   Power_All_Time                        3 hours
              ☐   Power Weekly                           2 hours
@@ -34,10 +41,10 @@
        ☐ Time to sunset/rise                           1 hour
        ☐ Weather                                           0 hours
        ☐ Humanized Info
-             ☐   Alerts                                      8 hours
-                  ☐   Record-setting Days
-                  ☐   Watt-hours scale
-                  ☐   Trivia  
+             ✔   Alerts                                      8 hours @done (13-11-26 12:33)
+                  ✔   Record-setting Days @done (13-11-26 12:33)
+                  ✔   Watt-hours scale @done (13-11-26 12:33)
+                  ✔   Trivia @done (13-11-26 12:33)
        ☐ God Account
              ☐   Logins
              ☐   CMS for adding alerts and trivia 8 hours
@@ -50,7 +57,10 @@ week = array of seven values
 4. sum the days
 5. add the timestampt
 
-
+ ☐ set up the tasks on heroku
+   ☐ clean db
+     ☐ call SolarData.get_energy_lifetime every day?
+       ☐ 
 
 (weeks) weeks_of_data = 2 weeks of data
 weeks_of_data.each_with_index |week, index|

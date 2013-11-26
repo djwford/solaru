@@ -1,13 +1,18 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+
 gem 'rails', '3.2.13'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'bootstrap-sass', '>= 3.0.0.0'
-
 end
+
+group :production do
+  gem 'rails_12factor'
+end
+
+
 gem 'jquery-rails'
 gem 'devise'
 gem 'figaro'
@@ -40,3 +45,4 @@ group :test do
   gem 'minitest-spec-rails'
   gem 'minitest-wscolor'
 end
+ruby '2.0.0'

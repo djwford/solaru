@@ -3,7 +3,10 @@ $(function() {
     new Highcharts.Chart({
             chart: {
               renderTo: "current_production",
-              type: 'area'
+              type: 'area',
+              backgroundColor: '#990000',
+              plotBackgroundColor: '#990000'
+
             },
             xAxis: {
                 type: "datetime"
@@ -25,12 +28,135 @@ $(function() {
             ]       
         });
 
-     // weeklyData -----------------------------------------------
 
+
+             // All-time production -----------------------------------------------
+  new Highcharts.Chart({
+            chart: {
+              renderTo: "power_all_time",
+              backgroundColor: "#000000",
+              plotBackgroundColor: null,
+              type: 'area',
+                 style: {
+                  color: "#990000",
+                  fontSize: '2em',
+
+              title: {
+                style: {
+                color: '#FF00FF',
+                fontWeight: 'bold'
+                }
+        },
+        },
+            },
+
+
+              legend: {
+            backgroundColor: '#FCFFC5',
+            
+              color: "white"
+          
+        },
+            xAxis: {
+                type: "datetime",
+                tickColor: '#dac092',
+                labels: {
+                    style: {
+                        color: '#89A54E'
+                    }
+                }
+            },
+
+            title: {
+            style: {
+                color: '#FF00FF',
+                fontWeight: 'bold'
+            }
+        },
+            yAxis: {
+              title: {
+                text: "Watt-Hours",
+                lineColor: '#dac092',
+                style: {
+                  color: "#965b50"
+                }
+              },
+
+              labels: {
+                    
+                    style: {
+                        color: '#89A54E'
+                    }
+                }
+            },
+
+ plotOptions: {
+            series: {
+                   shadow: true,
+                   offsetX: "3px",
+                   offsetY:"3px",
+                   opacity:"0.6",
+              lineColor: '#c0a89e',
+                marker: {
+                    enabled: false,
+                }
+            }
+        },
+
+            series: [
+
+                    {   color: '#990000',
+                        name: "All-time Production",
+                        pointInterval: <%= 86400000 %>,
+                        pointStart: <%= (Date.new(2013,9,11).beginning_of_day.to_i) * 1000 %>,
+                        data: <%= SolarData.get_energy_lifetime %>
+                    } 
+
+            ]       
+        });
+
+             // Week-by-week production -----------------------------------------------
+
+
+    $(function() {
         new Highcharts.Chart({
             chart: {
               renderTo: "weekly_data",
-              type: 'spline'
+              type: 'areaspline'
+            },
+            xAxis: {
+                 categories: [
+                    'Sunday',
+                    'Monday',
+                    'Tuesday',
+                    'Wednesday',
+                    'Thursday',
+                    'Friday',
+                    'Saturday'
+                   
+                ]
+            },
+            yAxis: {
+              title: {
+                text: "Watt-Hours"
+              }
+            },
+
+            series: [
+                <% WeeklyData.limit(3).order('id desc').each_with_index do |week, index| %>
+                    {   
+                        name: "Week of <%= week.forWeek %>",
+                        data: <%= week.weekly_production_total_by_days  %>
+                    }<% if index <= 1 %>,<% end %>
+                    <% end %>
+            ]       
+        });
+    });
+
+new Highcharts.Chart({
+            chart: {
+              renderTo: "monthly_data",
+              type: 'area'
             },
             xAxis: {
                 type: "datetime"
@@ -43,16 +169,10 @@ $(function() {
 
             series: [
                     {   
-                        <% week = WeeklyData.last %>
-                        name: "Week of <%= week.forWeek %>",
-                        pointInterval: <%= 2400 * 1000 %>,
-                        pointStart: <%= (week.forWeek.beginning_of_day.to_i) * 1000 %>,
-                        data: <%= week.weeklyProduction.in_groups_of(8).map{|a| a.reduce(:+)} %>
-                      
-                    }
+                        name: "All-time Production",
+                        data: <%= SolarData.retrieve_monthly_data %>
+                    } 
+
             ]       
         });
-
-             // current production -----------------------------------------------
-
     });

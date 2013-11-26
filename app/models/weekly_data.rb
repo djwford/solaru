@@ -3,6 +3,9 @@ class WeeklyData < ActiveRecord::Base
   attr_accessor :all_days, :day1, :day2, :day3, :day4, :day5, :day6, :day7
   serialize :weeklyProduction
 
+
+
+
   def all_days
     weeklyProduction.in_groups_of(weeklyProduction.count / 7)
   end

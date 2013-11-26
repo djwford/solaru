@@ -1,76 +1,68 @@
 
 
-<div class="container">
-
-  <div id="power_all_time"></div>
-<h1> Hello?</h1>
 <!--  _____________________________________top row_________________________________  -->
-<div class="row" id="topRow">  
-  <div class="col-md-4" id="powerProduction">
-    <%= render partial: 'shared/power_all_time' %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <h1> Solar - U </h1>
+    </div>
+    <div class="col-lg-8">
+      <iframe id="forecast_embed" 
+        type="text/html" 
+        frameborder="0" 
+        src="http://forecast.io/embed/#lat=40.7650&lon=-111.8500&name=University of Utah&color=#cc0000&text-color=#cc0000&font=helvetica"> 
+      </iframe>
+    </div>
   </div>
-
-  <div class="col-md-4">
-    <%= render partial: 'shared/monthly_production' %>
-  </div>
-
-  <div class="col-md-4">
-    <%= render partial: 'shared/timetosun' %>
-  </div>
-</div>
-
 <!--  _____________________________________middle row -Carousel ______________________  -->
 
  
           
 
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="5000">
+<div id="carousel" class="carousel slide col-lg-12" data-ride="carousel" data-interval="5000">
   <!-- Indicators -->
   <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    <li data-target="#carousel" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel" data-slide-to="1"></li>
+    <li data-target="#carousel" data-slide-to="2"></li>
+    <li data-target="#carousel" data-slide-to="3"></li>
   </ol>
 
   <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    <div class="item active" id="current_production">
-      
-      <div class="carousel-caption">
-        Current Production
-      </div>
-    </div>
-
-    <div class="item" id="weekly_data">
-      <div class="carousel-caption">
-        Weekly Production
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
+  <div class='carousel slide'>
+    <div class="carousel-inner">
+      <div class="item active col-lg-12" id="current_production"></div>
+      <div class="item col-lg-12" id="weekly_data"></div>
+      <div class="item col-lg-12" id="power_all_time"></div>
+      <div class="item col-lg-12" id="monthly_data"></div>
+    </div><!-- ends carousel inner -->
+  </div> <!-- ends carousel -->
 </div>
 
 <!--  _____________________________________bottom row ______________________  -->
-
-  <div class="row">
-    <iframe id="forecast_embed" 
-      type="text/html" 
-      frameborder="0" 
-      height="245" 
-      width="45%" 
-      src="http://forecast.io/embed/#lat=40.7650&lon=-111.8500&name=University of Utah&color=#cc0000&text-color=#cc0000&font=helvetica"> 
-    </iframe>
+<div class="row">
+  <div class="col-md-4">
+    <%= render partial: 'shared/timetosun' %>
+  </div>   
+  <div id="stats">
+    <h3>Vital Statistics</h3>
+    <table>
+      <tr>
+        <th>Highest Daily Output:</th>
+        <td><%= number_with_delimiter( @highestOutput, :delimeter => ',') %></td>
+      </tr>
+      <tr>
+        <th>Average Daily Output:</th>
+        <td><%= number_with_precision( @averageOutput, :precision => 2, :delimeter => ',') %></td>
+      </tr>
+      <tr>
+        <th>Total Output:</th>
+        <td><%= number_with_delimiter( @totalOutput, :delimeter => ',') %></td>
+      </tr>
+    </table>
+  </div>
+    <%= render partial: "shared/statistics_page" %>
   </div>
 
-</div>
 
-
-
+</div><!--end container-->

@@ -1,2 +1,26 @@
 @import "bootstrap";
+$red: #cc0000;
+$lightBlue: #8abfbe;
 
+body{
+  background-color: $lightBlue;
+  font-size: 20px;
+}
+
+h1{
+  color: $red;
+  font-size: 3em;
+}
+
+#forecast_embed{
+  width: 100%;
+  height: 25%;
+}
+
+#carousel{
+  clear: both;
+}
+
+th{
+  text-align: right;
+}
