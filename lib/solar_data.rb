@@ -3,9 +3,16 @@ module SolarData
   def initialize 
   end
 
+  api_key = api_key
+
+  if api_key.nil? 
+    puts "Woops, your api key cannot be loaded"
+  end
+
+
   def self.get_energy_lifetime
     uri = URI("https://api.enphaseenergy.com/api/systems/242524/energy_lifetime")
-    params = { :key => ENV["SOLAR_U_API_KEY"] }
+    params = { :key => api_key }
     uri.query = URI.encode_www_form(params)
     res = Net::HTTP.get_response(uri)
     parsedResponse = JSON.parse(res.body)
@@ -26,7 +33,7 @@ module SolarData
     uri=URI("https://api.enphaseenergy.com/api/systems/242524/monthly_production")
     lastMonth = Time.now.beginning_of_month - 1.month
     timeStart = lastMonth.strftime("%Y-%m-%d")  
-    params = { :key => ENV["SOLAR_U_API_KEY"], :start => "#{timeStart}" }  
+    params = { :key => api_key, :start => "#{timeStart}" }  
     uri.query = URI.encode_www_form(params)
     res = Net::HTTP.get_response(uri)
     parsedResponse = JSON.parse(res.body)
@@ -57,7 +64,7 @@ module SolarData
 # ------------------------Weekly Production --------------------------
  def self.get_weekly_production
     uri=URI("https://api.enphaseenergy.com/api/systems/242524/power_week")
-    params = { :key => ENV["SOLAR_U_API_KEY"]}  
+    params = { :key => api_key}  
     uri.query = URI.encode_www_form(params)
     res = Net::HTTP.get_response(uri)
     parsedResponse = JSON.parse(res.body)
@@ -89,7 +96,7 @@ module SolarData
 # should be done once per day
   def self.get_current_production
     uri=URI("https://api.enphaseenergy.com/api/systems/242524/power_today")
-    params = { :key => ENV["SOLAR_U_API_KEY"]}  
+    params = { :key => api_key}  
     uri.query = URI.encode_www_form(params)
     res = Net::HTTP.get_response(uri)
     parsedResponse = JSON.parse(res.body)
@@ -102,7 +109,7 @@ module SolarData
 
   def self.get_new_daily_values
     uri=URI("https://api.enphaseenergy.com/api/systems/242524/power_today")
-    params = { :key => ENV["SOLAR_U_API_KEY"]}  
+    params = { :key => api_key}  
     uri.query = URI.encode_www_form(params)
     res = Net::HTTP.get_response(uri)
     parsedResponse = JSON.parse(res.body)
