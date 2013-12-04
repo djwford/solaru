@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
 
-  before_action :check_data, :only => [:index]
+  before_filter :check_data, :only => [:index]
   # def index
   #   @users = User.all
 
