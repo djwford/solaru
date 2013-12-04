@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+
+  before_action :check_data, :only => [:index]
   # def index
   #   @users = User.all
 
@@ -12,13 +14,20 @@ class HomeController < ApplicationController
     @energyLifetimeData = EnergyLifetimeArray.last.parsed_array
     @energyMonthlyData = SolarData.retrieve_monthly_data
     @energyWeeklyData = SolarData.retrieve_weekly_data
+    
     @totalOutput = EnergyLifetimeArray.last.raw_array.reduce(:+)
-    @averageOutput = (@totalOutput.to_f / (EnergyLifetimeArray.last.raw_array.count.to_f))
+    @averageOutput = (@totalOutput / (EnergyLifetimeArray.last.raw_array.count))
     @highestOutput = EnergyLifetimeArray.last.raw_array.max
 
    end
  
  
+private
+  def check_data
+    SolarData.get_energy_lifetime if EnergyLifetimeArray.last.nil?  
+  end 
 
 
 end
+
+# if empty, get data

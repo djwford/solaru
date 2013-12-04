@@ -8,55 +8,98 @@
 # movie      1     150        2             300
 # house      1     11,280/yr  x             11,280 -->
 
-<% total = @totalOutput %>
-<div>
+ 
   <h4>In total, this array has produced enough energy to...</h4>
-  <table class="table">
-    <tr>
-      <th>Brew</th>
-      <td><%= number_with_delimiter( (total/ 80), :precision => 2, :delimeter => ',') %></td>
-      <td>Cups of Coffee </td>
-    </tr>
+  <div id="stats_carousel" class="carousel slide" data-ride="carousel" data-interval="10000">
+    <ol class="carousel-indicators" id="hidden_carousel_indicators">
+      <li data-target="#stats_carousel" data-slide-to="0" class="active"></li>
+      <li data-target="#stats_carousel" data-slide-to="1"></li>
+      <li data-target="#stats_carousel" data-slide-to="2"></li>
+      <li data-target="#stats_carousel" data-slide-to="3"></li>
+      <li data-target="#stats_carousel" data-slide-to="4"></li>
+      <li data-target="#stats_carousel" data-slide-to="5"></li>
+      <li data-target="#stats_carousel" data-slide-to="6"></li>
+      <li data-target="#stats_carousel" data-slide-to="8"></li>
+    </ol>
 
-    <tr>
-      <th>Burn</th>
-      <td><%= number_with_delimiter( (total/ 22), :precision => 2, :delimeter => ',') %></td>
-      <td>Slices of Toast</td>
-    </tr>
+    <div class='carousel slide'>
+      <div class="carousel-inner">
+        <% total = @totalOutput %>
 
-    <tr>
-      <th>Make</th>
-      <td><%= number_with_delimiter( (total/ 60), :precision => 2, :delimeter => ',') %></td>
-      <td>Waffles</td>
-    </tr>
-
-    <tr>
-      <th>Run</th>
-      <td><%= number_with_delimiter( (total/ 50), :precision => 2, :delimeter => ',') %></td>
-      <td>Laptops for an hour</td>
-    </tr>
-
-    <tr>
-      <th>Wash and Dry</th>
-      <td><%= number_with_delimiter( (total/ 1658), :precision => 2, :delimeter => ',') %></td>
-      <td>Loads of Laundry</td>
-    </tr>
-
-    <tr>
-      <th>Microwave</th>
-      <td><%= number_with_delimiter( (total/ 45), :precision => 2, :delimeter => ',') %></td>
-      <td>Frozen Burritoes</td>
-    </tr>
-
-    <tr>
-      <th>Watch</th>
-      <td><%= number_with_delimiter( (total/ 300), :precision => 2, :delimeter => ',') %></td>
-      <td>Movies on a Flat-Screen TV</td>
-    </tr>
-    <tr>
-      <th>Power</th>
-      <td><%= number_with_delimiter( (total/ 11280), :precision => 2, :delimeter => ',') %></td>
-      <td>Homes for a Year</td>
-    </tr>
-  </table>
-</div>
+        <div class="item active">
+          <p class="stats_paragraph"> Brew
+          <span class="quantity">
+            <%= number_with_delimiter( (total/ 80), :precision => 2, :delimeter => ',') %>
+          </span>
+            cups of coffee
+          </p>
+          
+        </div>
+        <div class="item">
+          <p class="stats_paragraph">Burn
+            <span class="quantity">
+              <%= number_with_delimiter( (total/ 22), :precision => 2, :delimeter => ',') %>
+            </span>
+            slices of toast
+          </p>
+          
+        </div>
+        <div class="item">
+          <p class="stats_paragraph">Make
+            <span class="quantity">
+              <%= number_with_delimiter( (total/ 60), :precision => 2, :delimeter => ',') %>
+            </span>
+            waffles
+          </p>
+          
+        </div>
+        <div class="item">
+          <p class="stats_paragraph">Run
+            <span class="quantity">
+              <%= number_with_delimiter( (total/ 50), :precision => 2, :delimeter => ',') %>
+            </span>
+            laptops for one hour
+          </p>
+          
+        </div>
+        <div class="item">
+          <p class="stats_paragraph">Wash and Dry
+            <span class="quantity">
+              <%= number_with_delimiter( (total/ 1658), :precision => 2, :delimeter => ',') %>
+            </span>
+            loads of laundry
+          </p>
+          
+        </div>
+        <div class="item">
+          <p class="stats_paragraph">Microwave
+            <span class="quantity">
+              <%= number_with_delimiter( (total/ 45), :precision => 2, :delimeter => ',') %>
+            </span>
+            frozen burritoes
+          </p>
+          
+        </div>
+        <div class="item">
+          <p class="stats_paragraph">Watch
+            <span class="quantity">
+              <%= number_with_delimiter( (total/ 300), :precision => 2, :delimeter => ',') %>
+            </span>
+            movies on a flatscreen TV
+          </p>
+          
+        </div>
+        <div class="item">
+          <p class="stats_paragraph">Power
+            <span class="quantity">
+              <%= number_with_delimiter( (total/ 11280), :precision => 2, :delimeter => ',') %>
+            </span>
+            homes for a year
+          </p>
+        </div>
+      </div>
+    </div><!-- ends carousel inner -->
+  </div><!--end carousel -->
+    
+ 
+ 

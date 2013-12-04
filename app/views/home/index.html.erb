@@ -2,11 +2,28 @@
 
 <!--  _____________________________________top row_________________________________  -->
 <div class="container">
-  <div class="row">
+  
+  <div class="row" id="top_row">
     <div class="col-lg-4">
       <h1> Solar - U </h1>
+      <h3>Vital Statistics: Watt-hours</h3>
+      <table id="vital_stats">
+        <tr>
+          <th>Highest Daily Output:</th>
+          <td><%= number_with_delimiter( @highestOutput, :delimeter => ',') %></td>
+        </tr>
+        <tr>
+          <th>Average Daily Output:</th>
+          <td><%= number_with_delimiter( @averageOutput, :delimeter => ',') %></td>
+        </tr>
+        <tr>
+          <th>Total Output:</th>
+          <td><%= number_with_delimiter( @totalOutput, :delimeter => ',') %></td>
+        </tr>
+      </table>
     </div>
-    <div class="col-lg-8">
+ 
+    <div class="col-lg-8" id="forecast_div">
       <iframe id="forecast_embed" 
         type="text/html" 
         frameborder="0" 
@@ -14,54 +31,45 @@
       </iframe>
     </div>
   </div>
+     </div>
 <!--  _____________________________________middle row -Carousel ______________________  -->
 
  
           
+  <div class="row" id="carousel_row">
+    <div id="carousel" class="carousel slide col-lg-12" data-ride="carousel" data-interval="5000">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#carousel" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel" data-slide-to="1"></li>
+      <li data-target="#carousel" data-slide-to="2"></li>
+      <!-- <li data-target="#carousel" data-slide-to="3"></li> -->
+    </ol>
 
-<div id="carousel" class="carousel slide col-lg-12" data-ride="carousel" data-interval="5000">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel" data-slide-to="1"></li>
-    <li data-target="#carousel" data-slide-to="2"></li>
-    <li data-target="#carousel" data-slide-to="3"></li>
-  </ol>
-
-  <!-- Wrapper for slides -->
-  <div class='carousel slide'>
-    <div class="carousel-inner">
-      <div class="item active col-lg-12" id="current_production"></div>
-      <div class="item col-lg-12" id="weekly_data"></div>
-      <div class="item col-lg-12" id="power_all_time"></div>
-      <div class="item col-lg-12" id="monthly_data"></div>
-    </div><!-- ends carousel inner -->
-  </div> <!-- ends carousel -->
-</div>
-
-<!--  _____________________________________bottom row ______________________  -->
-<div class="row">
-  <div class="col-md-4">
-    <%= render partial: 'shared/timetosun' %>
-  </div>   
-  <div id="stats">
-    <h3>Vital Statistics</h3>
-    <table>
-      <tr>
-        <th>Highest Daily Output:</th>
-        <td><%= number_with_delimiter( @highestOutput, :delimeter => ',') %></td>
-      </tr>
-      <tr>
-        <th>Average Daily Output:</th>
-        <td><%= number_with_precision( @averageOutput, :precision => 2, :delimeter => ',') %></td>
-      </tr>
-      <tr>
-        <th>Total Output:</th>
-        <td><%= number_with_delimiter( @totalOutput, :delimeter => ',') %></td>
-      </tr>
-    </table>
+    <!-- Wrapper for slides -->
+      <div class='carousel slide'>
+        <div class="carousel-inner">
+          <div class="item active col-lg-12" id="current_production"></div>
+          <div class="item col-lg-12" id="weekly_data"></div>
+          <div class="item col-lg-12" id="power_all_time"></div>
+          <!-- <div class="item col-lg-12" id="monthly_data"></div> -->
+        </div><!-- ends carousel inner -->
+      </div> <!-- ends carousel -->
+    </div>
   </div>
-    <%= render partial: "shared/statistics_page" %>
+
+
+  <!--  _____________________________________bottom row ______________________  -->
+  <div class="row" id="bottom_row">
+    <div class="col-lg-4">
+      <%= render partial: 'shared/timetosun' %>
+    </div> 
+    <div class="col-lg-4"></div>  
+    <div class="col-lg-4" id="stats">
+      
+    
+      <%= render partial: "shared/statistics_page" %>
+
   </div>
 
 

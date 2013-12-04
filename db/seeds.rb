@@ -7,8 +7,56 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 # Environment variables (ENV['...']) can be set in the file config/application.yml.
 # See http://railsapps.github.io/rails-environment-variables.html
-puts 'DEFAULT USERS'
-user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
-puts 'user: ' << user.name
+# puts 'DEFAULT USERS'
+# user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
+# puts 'user: ' << user.name
 
+#  
+
+
+# to populate:
+#  all-time
+#     one call
+#  weekly
+#     all weeks on record
+#  monthly
+#     all months on record
+#  yesterday
+#     one call
+
+
+# energy lifetime
+SolarData.get_energy_lifetime
+
+# weekly
+
+SolarData.get_weekly_production
+
+
+
+# monthly
+first_response = HTTParty.get('https://api.enphaseenergy.com/api/systems/242524/energy_lifetime?key=40de436ba96bef946401fcf18a66f021')["production"]
+
+ 
+september = Array.new(first_response[0..18]) 
+october = Array.new(first_response[19..49])
+november = Array.new(first_response[50..first_response.length])
+
+  sept = MonthlyData.new
+  sept.forMonth = Date.new(2013,9,1)
+  sept.powerProduced = september
+  sept.save
+
+
+  nov = MonthlyData.new
+  nov.forMonth = Date.new(2013,11,1)
+  nov.powerProduced = november
+  nov.save
+
+
+  oct = MonthlyData.new
+  oct.forMonth = Date.new(2013,10,01)
+  oct.powerProduced = october
+  oct.save
+ 
 

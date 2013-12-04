@@ -20,7 +20,7 @@ module SolarData
     x.save
   end  
  
-# ------------------------Monthly Production --------------------------
+# ------------------------Monthly totals --------------------------
 # run this on the second day of the month
   def self.get_monthly_production
     uri=URI("https://api.enphaseenergy.com/api/systems/242524/monthly_production")
@@ -50,6 +50,9 @@ module SolarData
       # in the above, you are also converting the time to javascript by timesing by 1000
     end
   end
+
+
+
 
 # ------------------------Weekly Production --------------------------
  def self.get_weekly_production
@@ -83,6 +86,7 @@ module SolarData
 
 # ------------------------Current Production --------------------------
 
+# should be done once per day
   def self.get_current_production
     uri=URI("https://api.enphaseenergy.com/api/systems/242524/power_today")
     params = { :key => ENV["SOLAR_U_API_KEY"]}  
@@ -95,6 +99,21 @@ module SolarData
     dailyData.for_day = Time.now
     dailyData.save
   end
+
+  def self.get_new_daily_values
+    uri=URI("https://api.enphaseenergy.com/api/systems/242524/power_today")
+    params = { :key => ENV["SOLAR_U_API_KEY"]}  
+    uri.query = URI.encode_www_form(params)
+    res = Net::HTTP.get_response(uri)
+    parsedResponse = JSON.parse(res.body)
+    results = parsedResponse["production"]
+    difference = results.length - DailyProduction.last.production_totals.length
+    # should it also update it?
+    return results[-difference..results.length]
+  end
+
+
+
 end 
 
 

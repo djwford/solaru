@@ -1,178 +1,323 @@
-$(function() {    
-     // current production -----------------------------------------------
-    new Highcharts.Chart({
-            chart: {
-              renderTo: "current_production",
-              type: 'area',
-              backgroundColor: '#990000',
-              plotBackgroundColor: '#990000'
 
-            },
-            xAxis: {
-                type: "datetime"
-            },
-            yAxis: {
-              title: {
-                text: "Watt-Hours"
-              }
-            },
+$(document).ready(function(){
 
-            series: [
-                    {   
-                        name: "Yesterday's Production",
-                        pointInterval: <%= 300 * 1000 %>,
-                        pointStart: <%= (DailyProduction.last.for_day.to_i)*1000 %>,
-                        data: <%= DailyProduction.last.production_totals %>
-                    } 
 
-            ]       
-        });
+  //set height to viewfinder height
+  $(window).resize(function(){
+    $(".container").height($(document).height());
+  });
+
+  // current production -----------------------------------------------
+
+   new Highcharts.Chart({
+    chart: {
+      renderTo: "current_production",
+      type: 'areaspline',
+      backgroundColor: '#000000',
+      plotBackgroundColor: null,
+      animation: Highcharts.svg,
+      style: {
+        fontSize: '2em',
+      },
+      events: {
+        load: function() {
+          setInterval(function() {
+            <%= SolarData.get_current_production %>
+            var chart = $('#current_production').highcharts();
+            chart.series[0].setData(<%= DailyProduction.last["production_totals"] %>)
+              // is the above actually inserting the new data into the setData function?
+          }, 300000);
+        }
+      }
+    },
+    title: {
+      text: "Energy Produced today, by the Hour",
+      style: {
+      color: '#cc0000',
+      fontWeight: 'bold',
+      fontSize: '25px',
+      fontFamily: '\'orbitron-light\', sans-serif'
+      }
+    },
+    legend: {
+      enabled: false
+    },        
+    xAxis: {
+      type: "datetime",
+      tickColor: '#dac092',
+      labels: {
+        style: {
+          color: '#89A54E'
+        }
+      }
+    },
+    yAxis: {
+      title: {
+        text: "Watt-Hours", 
+        style: {
+          color: '#89A54E'
+        }
+      }
+    },
+    plotOptions: {
+      series: {
+        fillColor: {
+          linearGradient: [0,0,0,300],
+          stops: [
+            [0, '#00FF64'],
+            [1, 'rgba(0, 20, 10, 0.7)']
+          ]
+        },
+        shadow: true,
+        offsetX: "3px",
+        offsetY:"3px",
+        opacity:"0.6",
+        lineColor: '#00FF64',
+        marker: {
+          enabled: false,
+        }
+      }
+    },
+    series: [
+      {   
+        name: "Yesterday's Production",
+        pointInterval: <%= 300 * 1000 %>,
+        pointStart: <%= (DailyProduction.last.for_day.beginning_of_day.to_i)*1000 %>,
+        data: <%= DailyProduction.last.production_totals %>
+      } 
+    ]       
+  });
 
 
 
              // All-time production -----------------------------------------------
   new Highcharts.Chart({
-            chart: {
-              renderTo: "power_all_time",
-              backgroundColor: "#000000",
-              plotBackgroundColor: null,
-              type: 'area',
-                 style: {
-                  color: "#990000",
-                  fontSize: '2em',
-
-              title: {
-                style: {
-                color: '#FF00FF',
-                fontWeight: 'bold'
-                }
+    chart: {
+      renderTo: "power_all_time",
+      backgroundColor: "#000000",
+      plotBackgroundColor: null,
+      type: 'areaspline',
+      style: {
+        color: "#990000",
+        fontSize: '2em',
+        title: {
+          style: {
+            color: '#cc0000',
+            fontWeight: 'bold'
+          }
         },
+      },
+    },
+    legend: {
+      enabled: false
+    },
+    xAxis: {
+      type: "datetime",
+      tickColor: '#dac092',
+      labels: {
+        style: {
+          color: '#89A54E'
+        }
+      }
+    },
+    title: {
+      text: "Energy Production Per Day",
+      style: {
+        color: '#cc0000',
+        fontWeight: 'bold',
+        fontSize: '25px'
+      }
+    },
+    yAxis: {
+      title: {
+        text: "Watt-Hours",
+        lineColor: '#dac092',
+        style: {
+          color: "#cc0000"
+        }
+      },
+      labels: {
+        style: {
+          color: '#89A54E'
+        }
+      }
+    },
+
+    plotOptions: {
+      series: {
+        fillColor: {
+          linearGradient: [0,0,0,300],
+          stops: [
+            [0, '#00FF64'],
+            [1, 'rgba(0, 20, 10, 0.7)']
+          ]
         },
-            },
+        shadow: true,
+        offsetX: "3px",
+        offsetY:"3px",
+        opacity:"0.6",
+        lineColor: '#00FF64',
+        marker: {
+          enabled: false,
+        }
+      }
+    },
 
+    series: [
+      {   
+        name: "All-time Production",
+        pointInterval: <%= 86400000 %>,
+        pointStart: <%= (Date.new(2013,9,11).beginning_of_day.to_i) * 1000 %>,
+        data: <%= EnergyLifetimeArray.last.raw_array %>
+      } 
+    ]       
+  });
 
-              legend: {
-            backgroundColor: '#FCFFC5',
-            
-              color: "white"
-          
+  // Week-by-week production -----------------------------------------------
+  new Highcharts.Chart({
+    chart: {
+      renderTo: "weekly_data",
+      type: 'areaspline',
+      backgroundColor: '#000000',
+      plotBackgroundColor: null
+    },
+
+    title: {
+      text: "Daily Totals",
+      style: {
+        color: '#cc0000',
+        fontWeight: 'bold',
+        fontSize: '25px',
+        fontFamily: '\'orbitron-light\', sans-serif'
+      }
+    },            
+    
+    legend: {
+      enabled: false
+    },
+    
+    xAxis: {
+      categories: [
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday'
+      ],
+      labels: {
+        style: {
+          color: '#89A54E'
+        }
+      }
+    },
+
+    yAxis: {
+      title: {
+        text: "Watt-Hours",
+        style: {
+          color: '#89A54E'
+        }
+      }
+    },
+
+    plotOptions: {
+      series: {
+        fillColor: {
+          linearGradient: [0,0,0,300],
+          stops: [
+            [0, '#00FF64'],
+            [1, 'rgba(0, 20, 10, 0.7)']
+          ]
         },
-            xAxis: {
-                type: "datetime",
-                tickColor: '#dac092',
-                labels: {
-                    style: {
-                        color: '#89A54E'
-                    }
-                }
-            },
+        shadow: true,
+        offsetX: "3px",
+        offsetY:"3px",
+        opacity:"0.6",
+        lineColor: '#00FF64',
+        marker: {
+          enabled: false,
+        }
+      }
+    },
 
-            title: {
-            style: {
-                color: '#FF00FF',
-                fontWeight: 'bold'
-            }
-        },
-            yAxis: {
-              title: {
-                text: "Watt-Hours",
-                lineColor: '#dac092',
-                style: {
-                  color: "#965b50"
-                }
-              },
+    series: [
+      <% WeeklyData.limit(3).order('id desc').each_with_index do |week, index| %>
+        {   
+          name: "Week of <%= week.forWeek %>",
+          data: <%= week.weekly_production_total_by_days  %>
+        }<% if index <= 1 %>,<% end %>
+      <% end %>
+    ]       
+  });
 
-              labels: {
-                    
-                    style: {
-                        color: '#89A54E'
-                    }
-                }
-            },
+});  
 
- plotOptions: {
-            series: {
-                   shadow: true,
-                   offsetX: "3px",
-                   offsetY:"3px",
-                   opacity:"0.6",
-              lineColor: '#c0a89e',
-                marker: {
-                    enabled: false,
-                }
-            }
-        },
+  // new Highcharts.Chart({
+//             chart: {
+//               renderTo: "monthly_data",
+//               type: 'area',
+//               backgroundColor: '#000000',
+//               plotBackgroundColor: null
+//             },
+//             title: {
+//               text: "Month by Month",
+//             style: {
+//                 color: '#cc0000',
+//                 fontWeight: 'bold',
+//                 fontSize: '25px',
+//                 fontFamily: '\'orbitron-light\', sans-serif'
 
-            series: [
+//             }
+//         },
+//             legend: {
+//               enabled: false
+//             },
+//         xAxis: {
+//               type: "datetime",
+//               tickColor: '#dac092',
+//               labels: {
+//                 style: {
+//                   color: '#89A54E'
+//                 }
+//               }
+//             },
+//             yAxis: {
+//               title: {
+//                 text: "Watt-Hours",
+//                 style: {
+//                   color: '#89A54E'
+//                 }
+//               }
+//             },
+//  plotOptions: {
+//             series: {
+    
+//               fillColor: {
+//                 linearGradient: [0,0,0,300],
+//                 stops: [
+//                   [0, '#00FF64'],
+//                   [1, 'rgba(0, 20, 10, 0.7)']
+//                 ]
+//               },
 
-                    {   color: '#990000',
-                        name: "All-time Production",
-                        pointInterval: <%= 86400000 %>,
-                        pointStart: <%= (Date.new(2013,9,11).beginning_of_day.to_i) * 1000 %>,
-                        data: <%= SolarData.get_energy_lifetime %>
-                    } 
+//                    shadow: true,
+//                    offsetX: "3px",
+//                    offsetY:"3px",
+//                    opacity:"0.6",
+//               lineColor: '#00FF64',
+//                 marker: {
+//                     enabled: false,
+//                 }
+//             }
+//         },
+//             series: [
+//                     {   
+//                         name: "All-time Production",
+//                         data: <%= SolarData.retrieve_monthly_data %>
+//                     } 
 
-            ]       
-        });
+//             ]       
+       // });
 
-             // Week-by-week production -----------------------------------------------
-
-
-    $(function() {
-        new Highcharts.Chart({
-            chart: {
-              renderTo: "weekly_data",
-              type: 'areaspline'
-            },
-            xAxis: {
-                 categories: [
-                    'Sunday',
-                    'Monday',
-                    'Tuesday',
-                    'Wednesday',
-                    'Thursday',
-                    'Friday',
-                    'Saturday'
-                   
-                ]
-            },
-            yAxis: {
-              title: {
-                text: "Watt-Hours"
-              }
-            },
-
-            series: [
-                <% WeeklyData.limit(3).order('id desc').each_with_index do |week, index| %>
-                    {   
-                        name: "Week of <%= week.forWeek %>",
-                        data: <%= week.weekly_production_total_by_days  %>
-                    }<% if index <= 1 %>,<% end %>
-                    <% end %>
-            ]       
-        });
-    });
-
-new Highcharts.Chart({
-            chart: {
-              renderTo: "monthly_data",
-              type: 'area'
-            },
-            xAxis: {
-                type: "datetime"
-            },
-            yAxis: {
-              title: {
-                text: "Watt-Hours"
-              }
-            },
-
-            series: [
-                    {   
-                        name: "All-time Production",
-                        data: <%= SolarData.retrieve_monthly_data %>
-                    } 
-
-            ]       
-        });
-    });

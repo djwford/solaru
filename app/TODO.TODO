@@ -4,7 +4,7 @@
 ☐ ⌘ + shift + a will archive the done tasks, by removing them from your list and appending them to the bottom of the file under Archive project
 ☐ Anything with colon at the end of the line is a project title, you can also nest projects by indenting them.
   
-
+it might be useful to just rely on api calls for all of your data, instead of saving to and querying it from the data
   Solar U:
  ✔ translate all graphs into highcharts @done (13-11-25 18:30)
    ✔ remove all references to D3/rickshaw @done (13-11-25 18:30)
@@ -49,7 +49,9 @@
              ☐   Logins
              ☐   CMS for adding alerts and trivia 8 hours
 
-week = array of seven values
+
+
+
 
 1. get the data from the db
 2. grab the weeklyProdcution
@@ -67,94 +69,9 @@ weeks_of_data.each_with_index |week, index|
   week_#{index} = week.in_groups_of(week.count / 7)
   end
 
-Model WeeklyData
 
-forWeek
-weeklyProduction
-
- ✔ pull out the last six weeks @done (13-11-23 10:24)
- ☐ pull out each week's production array
- ☐ run the transformation
-   ☐ define each element's start date as x weeks from 
- ☐ put the results in an array
 
 weeks.in_groups_of( week.count/7) do |day|
 day.reduce(:+)
 
 
-
-
-<script>
-
-// var data = <%#= raw(@energyWeeklyData)%>;
-
- 
-        element: document.querySelector("#weekly_data"),
-        width: 580,
-        height: 250,
-        series: [ 
-        <% @energyWeeklyData.each_with_index do |week, i| %>
-        {
-                name: "Day <%= i %>",
-                color: '<%= ['steelblue', 'pink', 'purple', 'yellow', 'orange', 'green', 'red'][i] %>',
-                data: <%= raw(week.weekly_production_total_by_days_with_timestamps.to_json) %>
-        }<%= ',' unless i == 3 %>
-        <% end %> 
-         ]
-} );
-
- 
-
-</script>
-
-<!-- grab all of the powerProduced
-    shove them into an array
-    set a start index based on the first relevant month in the array
-    do basically what you did in power_all_time -->
-
-
-<style>
-#chart_container {
-        position: relative;
-        font-family: Arial, Helvetica, sans-serif;
-}
-#chart {
-        position: relative;
-        left: 40px;
-}
-#y_axis {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 40px;
-}
-</style>
-<div id="chart_container">
-        <div id="y_axis"></div>
-        <div id="power_all"></div>
-</div>
-<script>
-
-var data = <%= raw(@energyLifetimeData)%>;
-
-var graph = new Rickshaw.Graph( {
-        element: document.querySelector("#power_all"),
-        width: 700,
-        height: 500,
-        series: [ {
-                data: data,
-                color: 'steelblue'
-                
-        } ]
-} );
-
-var x_axis = new Rickshaw.Graph.Axis.Time( { graph: graph } );
-var y_ticks = new Rickshaw.Graph.Axis.Y( {
-    graph: graph,
-    orientation: 'left',
-    tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
-    element: document.getElementById('y_axis'),
-} );
-graph.render();
-
-</script>

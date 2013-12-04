@@ -1,26 +1,89 @@
 @import "bootstrap";
+@import "fonts";
 $red: #cc0000;
 $lightBlue: #8abfbe;
 
 body{
-  background-color: $lightBlue;
+  background-color: #000000;
   font-size: 20px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
 }
 
 h1{
   color: $red;
   font-size: 3em;
+  font-family: 'orbitron-bold';
+
 }
 
+#top_row{
+  height: 25%;
+  margin-top: 1em;
+}
+h3 {
+  color: #965b50;
+}
+#vital_stats{
+  color: #ffffff;
+  text-align: left;
+  border: 1px solid #990000;
+  th{
+ 
+    padding: 5px 15px 5px 5px;
+  }
+  td{
+    color: #990000;
+    padding-right: 5px;
+  }
+}
+
+.fe_container{
+  height: 8em;;
+}
+
+.fe_forecast{
+  height: 100%;
+}
 #forecast_embed{
   width: 100%;
-  height: 25%;
+  
+}
+#forecast_div{
+  height: 100%;
 }
 
+iframe{
+  min-height: 250px;
+}
 #carousel{
-  clear: both;
+  height: 30%;
 }
 
 th{
   text-align: right;
+}
+
+#countdownContainer{
+  font-family: 'orbitron-bold';
+  color: 00FF64;
+}
+
+
+ 
+#stats{
+  text-align: left;
+  color: #965b50;
+  .quantity{
+    color: #990000;
+  }
+}
+
+#hidden_carousel_indicators{
+  visibility: hidden;
+}
+
+.stats_paragraph{
+  width: 10em;
 }
