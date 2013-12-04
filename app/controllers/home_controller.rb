@@ -24,10 +24,11 @@ class HomeController < ApplicationController
  
 private
   def check_data
-    SolarData.get_energy_lifetime if EnergyLifetimeArray.last.nil?  
+    SolarData.get_energy_lifetime if EnergyLifetimeArray.last.nil? 
+    SolarData.get_monthly_production if MonthlyData.last.nil?
+    SolarData.get_weekly_production if WeeklyData.last.nil?
+    SolarData.get_current_production if DailyProduction.last.nil?
   end 
-
-
 end
 
 # if empty, get data
