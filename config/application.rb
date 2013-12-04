@@ -20,6 +20,7 @@ module Solaru
     config.autoload_paths += %W(#{config.root}/lib)
     config.assets.initialize_on_precompile = false
     config.assets.precompile += ['.css', '.js']
+    
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
