@@ -37,8 +37,10 @@ laundry.png: laundry-62281249fa5102e8e7f3629934c9f20f.png
 laundry/index.png: laundry-62281249fa5102e8e7f3629934c9f20f.png
 application.js: application-23e9e4964279885ac5bfa54915a9383d.js
 application/index.js: application-23e9e4964279885ac5bfa54915a9383d.js
-application.css: application-3354a76245bbfea2ef5d5ab2a5bc8f25.css
-application/index.css: application-3354a76245bbfea2ef5d5ab2a5bc8f25.css
+suncalc.js: suncalc-60db8fae32e76bea3733e120179a6455.js
+suncalc/index.js: suncalc-60db8fae32e76bea3733e120179a6455.js
+application.css: application-1b13569e9620782f423d4cd3ce931750.css
+application/index.css: application-1b13569e9620782f423d4cd3ce931750.css
 jquery.min.map: jquery.min-6336c5bca4c709e809647cdfcb484d0a.map
 jquery/index.min.map: jquery.min-6336c5bca4c709e809647cdfcb484d0a.map
 bootstrap/glyphicons-halflings-regular.eot: bootstrap/glyphicons-halflings-regular-e76f5a754ccf64843a118a8706df3f8c.eot
