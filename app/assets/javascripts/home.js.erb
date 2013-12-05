@@ -3,9 +3,18 @@ $(document).ready(function(){
 
 
   //set height to viewfinder height
-  $(window).resize(function(){
-    $(".container").height($(document).height());
-  });
+  // $(window).resize(function(){
+  //   $(".container").height($(document).height());
+  // });
+
+  $(function(){
+      $("#slides").slidesjs({
+        width: 940,
+        height: 528,
+        navigation: false
+      });
+    });
+
 
   // current production -----------------------------------------------
 
