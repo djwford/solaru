@@ -7,28 +7,23 @@
     <%= javascript_include_tag "application.js" %>
     <%= javascript_include_tag "suncalc.js" %>
     <%= javascript_include_tag "jquery.slides.min.js" %> 
-    <%= stylesheet_link_tag asset_path("font-awesome.min.css") %> 
-
+        <%= stylesheet_link_tag asset_path("framework_and_overrides") %> 
+    <%= stylesheet_link_tag asset_path("simplegrid") %> 
+<!--     <%= javascript_include_tag "gauge.js.erb" %> 
+ -->
+    <%= stylesheet_link_tag asset_path("reset.css") %> 
     <%= stylesheet_link_tag asset_path("carousel_styles.css") %> 
     <%= stylesheet_link_tag asset_path("jquery.countdown.css") %> 
     <%= stylesheet_link_tag asset_path("home") %> 
-    <%= stylesheet_link_tag asset_path("framework_and_overrides") %> 
     <%= javascript_include_tag "highcharts.js" %>
+    <%= javascript_include_tag "highcharts-more.js" %>
     <%= csrf_meta_tags %>
     <%= javascript_include_tag "jquery.countdown.js" %>
     <%= javascript_include_tag "home.js.erb" %>
   </head>
   <body>
-    <header>
-    </header>
-    <main role="main">
-      <div class="container">
-         <div class="row">
-           <div class="col-md-12">
+    <div id="main_container">
              <%= yield %>
            </div>
-         </div>
-      </div>
-    </main>
   </body>
 </html>

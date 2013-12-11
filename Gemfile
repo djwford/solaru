@@ -21,7 +21,7 @@ gem 'simple_form'
 gem 'unicorn'
 gem 'httparty'
 gem 'whenever', :require => false
-
+gem 'font-awesome-sass'
 
 group :development do
   gem 'better_errors'

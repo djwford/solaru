@@ -5,8 +5,6 @@ module SolarData
 
   @api_key = ENV["SOLAR_U_API_KEY"]
 
-
-
   def self.get_energy_lifetime
     uri = URI("https://api.enphaseenergy.com/api/systems/242524/energy_lifetime")
     params = { :key => @api_key }
@@ -51,7 +49,7 @@ module SolarData
     starting_month = months[0].forMonth.beginning_of_month.to_i
     powerProducedArray.each_with_index.collect do |value, index|
       [ (starting_month + (index).months) * 1000, value]
-      # in the above, you are also converting the time to javascript by timesing by 1000
+      # in the above, you are also converting the time to javascript by multiplying by 1000
     end
   end
 
@@ -67,7 +65,7 @@ module SolarData
     parsedResponse = JSON.parse(res.body)
     results = parsedResponse["production"]
     weeklyData = WeeklyData.new
-    weeklyData.weeklyProduction = results
+    weeklyData.weeklyProduction = results.in_groups_of(288).map{|a| a.reduce(:+)}
     weeklyData.forWeek = Time.now
     weeklyData.save
   end
@@ -75,17 +73,7 @@ module SolarData
   def self.retrieve_weekly_data
     weeks_count = WeeklyData.count
     weeks_count >= 6 ? weeks = WeeklyData.all[WeeklyData.count - 6..WeeklyData.count] : weeks = WeeklyData.all
-  end
-
-  def populate_database_with_weekly_data
-    x = WeeklyData.first.weeklyProduction
-    y = x.collect do |i|
-      (i + 1) * (rand(5))
-    end
-    newWeek = WeeklyData.new
-    newWeek.weeklyProduction = y
-    newWeek.forWeek = Time.now
-    newWeek.save
+   
   end
 
 # ------------------------Current Production --------------------------

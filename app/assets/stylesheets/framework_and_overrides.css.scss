@@ -1,88 +1,86 @@
 @import "fonts";
-$red: #cc0000;
-$lightBlue: #8abfbe;
 
-body{
-  // background-color: #000000;
-  font-size: 20px;
-  position: fixed;
-  top: 0px;
-  left: 0px;
+$uteRed: #cc0000;
+$black: #1D1F1E;
+$topGrey: #C3C9C9;
+$yellow: #FF9939;
+$green: #00B257;
+$lightBlue: #1F99FF;
+
+@mixin top-border($color) {
+  border-top: 10px solid $color;
 }
 
+body {
+  background-color: $black;
+  font-family: 'opensans';
+  color: $uteRed;
+}
+
+#main_container{
+}
+#title_panel {
+  @include top-border($green);
+  float: left;
+  width: 30%;
+  height: 100%;
+
+  #vital_stats{
+  width: 100%;
+  }
+}
 h1{
-  color: $red;
-  font-size: 3em;
+  text-align: center;
+  color: $uteRed;
+  font-size: 5em;
   font-family: 'orbitron-bold';
-
+  padding: 0.3em;
 }
 
-#top_row{
-  height: 25%;
-  margin-top: 1em;
-}
-h3 {
-  color: #965b50;
-}
-#vital_stats{
-  color: #ffffff;
-  text-align: left;
-  border: 1px solid #990000;
-  th{
- 
-    padding: 5px 15px 5px 5px;
+
+.panel {
+  background-color: $topGrey;
+    -webkit-box-shadow: 7px 7px 1px rgba(0, 0, 10, 0.9);
+    -moz-box-shadow:    7px 7px 1px rgba(0, 0, 10, 0.9);
+  box-shadow:           7px 7px 1px rgba(0, 0, 10, 0.9);
+  border-radius: 10px;
   }
-  td{
-    color: #990000;
-    padding-right: 5px;
-  }
-}
 
 .fe_container{
-  height: 8em;;
 }
 
-.fe_forecast{
+#forecast_div{  
+  iframe{
+    margin-top: 3em;
+    margin-left: 1em;
+  }
+  @include top-border($yellow);
   height: 100%;
+  float: left;
 }
-#forecast_embed{
-  width: 100%;
-  
+#power_all_time_row{
+  @include top-border($green);
 }
-#forecast_div{
+
+#slides{
+  @include top-border($lightBlue);
+  float: left;
+}
+
+#countdown_panel{
+  border-top: 10px solid $lightBlue;
   height: 100%;
-}
-
-iframe{
-  min-height: 250px;
-}
-#carousel{
-  height: 30%;
-}
-
-th{
-  text-align: right;
 }
 
 #countdownContainer{
+  float: left;
+  width: 100%;
   font-family: 'orbitron-bold';
   color: 00FF64;
 }
-
-
- 
-#stats{
-  text-align: left;
-  color: #965b50;
-  .quantity{
-    color: #990000;
+  .countdown_section{
+    padding-top: 1em;
   }
-}
-
-#hidden_carousel_indicators{
-  visibility: hidden;
-}
-
-.stats_paragraph{
-  width: 10em;
-}
+  .countdown_descr{
+    padding-top: 0.7em;
+  }

@@ -2,27 +2,54 @@
 $(document).ready(function(){
 
 
-  //set height to viewfinder height
-  // $(window).resize(function(){
-  //   $(".container").height($(document).height());
-  // });
+ 
+  $('#top_row').css({"height": ($( window ).height() * (3/10))});
+  $('#slides').css({"height": $( window ).height() * (0.369)});
+
+  // set height to viewfinder height
+  $(window).resize(function(){
+    $("#main_container").height($(window).height());
+  });
 
   $(function(){
       $("#slides").slidesjs({
-        width: 940,
-        height: 528,
-        navigation: false
+        play: {
+          active: true,
+          effect: "slide",
+          interval: 5000,
+          auto: true,
+          swap: true,
+          pauseOnHover: true,
+          restartDelay: 2500
+    },
+        width: $('#slides').width(),
+        height: $('#slides').height() * 0.8,
+        navigation: true
       });
     });
 
 
+  // $('.verb').hide();
+
+  // function fadeInSequence(li){
+  //     var next = $(li).next('li') !=null ? function(){fadeInSequence($(li).next('li'));} : function(){fadeInSequence($('li.verb:first'));};
+  //     $(li).fadeIn(500).delay(2000).hide(300,next);
+  // }
+
+  // fadeInSequence($('li.verb:first'));
+
+
+  
   // current production -----------------------------------------------
 
    new Highcharts.Chart({
     chart: {
+      borderRadius: 0,
+      height: $('#slides').height() * 0.8,
+      width: $('#power_all_time').width() * (1/2),
       renderTo: "current_production",
       type: 'areaspline',
-      backgroundColor: '#000000',
+      backgroundColor: '#C3C9C9',
       plotBackgroundColor: null,
       animation: Highcharts.svg,
       style: {
@@ -99,11 +126,16 @@ $(document).ready(function(){
 
 
 
+
              // All-time production -----------------------------------------------
+  
   new Highcharts.Chart({
     chart: {
+      borderRadius: 0,
+      width: ( $('#power_all_time').width() ),
+      height: ($( window ).height() * (1/5)),
       renderTo: "power_all_time",
-      backgroundColor: "#000000",
+      backgroundColor: "#C3C9C9",
       plotBackgroundColor: null,
       type: 'areaspline',
       style: {
@@ -134,7 +166,8 @@ $(document).ready(function(){
       style: {
         color: '#cc0000',
         fontWeight: 'bold',
-        fontSize: '25px'
+        fontSize: '25px',
+        fontFamily: '\'orbitron-light\', sans-serif'
       }
     },
     yAxis: {
@@ -185,9 +218,12 @@ $(document).ready(function(){
   // Week-by-week production -----------------------------------------------
   new Highcharts.Chart({
     chart: {
+      borderRadius: 0,
+      height: $('#slides').height() * (0.8),
+      width: $('#slides').width(),
       renderTo: "weekly_data",
       type: 'areaspline',
-      backgroundColor: '#000000',
+      backgroundColor: '#C3C9C9',
       plotBackgroundColor: null
     },
 
@@ -202,7 +238,11 @@ $(document).ready(function(){
     },            
     
     legend: {
-      enabled: false
+      enabled: true,
+      align: 'center',
+      style: {
+        fontSize: '15px'  
+      }
     },
     
     xAxis: {
@@ -233,18 +273,18 @@ $(document).ready(function(){
 
     plotOptions: {
       series: {
-        fillColor: {
-          linearGradient: [0,0,0,300],
-          stops: [
-            [0, '#00FF64'],
-            [1, 'rgba(0, 20, 10, 0.7)']
-          ]
-        },
+        // fillColor: {
+        //   linearGradient: [0,0,0,300],
+        //   stops: [
+        //     [0, '#00FF64'],
+        //     [1, 'rgba(0, 20, 10, 0.7)']
+        //   ]
+        // },
         shadow: true,
         offsetX: "3px",
         offsetY:"3px",
-        opacity:"0.6",
-        lineColor: '#00FF64',
+        opacity:"0.3",
+        // lineColor: '#00FF64',
         marker: {
           enabled: false,
         }
@@ -254,17 +294,19 @@ $(document).ready(function(){
     series: [
       <% WeeklyData.limit(3).order('id desc').each_with_index do |week, index| %>
         {   
-          name: "Week of <%= week.forWeek %>",
-          data: <%= week.weekly_production_total_by_days  %>
-        }<% if index <= 1 %>,<% end %>
+          name: "Week of <%= week.forWeek.strftime("%m-%d")%>",
+          data: <%= week.weeklyProduction  %>
+        }<% if index <= 2 %>,<% end %>
       <% end %>
     ]       
   });
 
 });  
 
-  // new Highcharts.Chart({
+//   new Highcharts.Chart({
 //             chart: {
+//               height: ($( window ).height() * (2/5)),
+//               width: ($('#power_all_time').width() * (1/2)),
 //               renderTo: "monthly_data",
 //               type: 'area',
 //               backgroundColor: '#000000',
@@ -302,7 +344,6 @@ $(document).ready(function(){
 //             },
 //  plotOptions: {
 //             series: {
-    
 //               fillColor: {
 //                 linearGradient: [0,0,0,300],
 //                 stops: [
@@ -322,11 +363,13 @@ $(document).ready(function(){
 //             }
 //         },
 //             series: [
-//                     {   
+//                     {    
 //                         name: "All-time Production",
 //                         data: <%= SolarData.retrieve_monthly_data %>
 //                     } 
 
 //             ]       
-       // });
+// });
+
+
 

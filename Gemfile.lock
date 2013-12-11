@@ -70,6 +70,8 @@ GEM
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
+    font-awesome-sass (4.0.2)
+      sass-rails (>= 3.1.1)
     formatador (0.2.4)
     guard (2.2.4)
       formatador (>= 0.2.4)
@@ -213,6 +215,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   figaro
+  font-awesome-sass
   guard-bundler
   guard-livereload
   guard-rails

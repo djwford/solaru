@@ -27,6 +27,16 @@
 
 # energy lifetime
 SolarData.get_energy_lifetime
+# 3.times do |x|
+#   y=WeeklyData.new
+#   dummy_array = []
+#   7.times do
+#     dummy_array  << (Random.rand(100) * 222) / 10
+#   end
+#   y.weeklyProduction = dummy_array
+#   y.forWeek = Time.now - (x + 1).months
+#   y.save
+# end
 
 # weekly
 
@@ -40,23 +50,23 @@ first_response = HTTParty.get('https://api.enphaseenergy.com/api/systems/242524/
  
 september = Array.new(first_response[0..18]) 
 october = Array.new(first_response[19..49])
-november = Array.new(first_response[50..first_response.length])
+november = Array.new(first_response[50..79])
 
   sept = MonthlyData.new
   sept.forMonth = Date.new(2013,9,1)
-  sept.powerProduced = september
+  sept.powerProduced = september.reduce(:+)
   sept.save
 
 
   nov = MonthlyData.new
   nov.forMonth = Date.new(2013,11,1)
-  nov.powerProduced = november
+  nov.powerProduced = november.reduce(:+)
   nov.save
 
 
   oct = MonthlyData.new
   oct.forMonth = Date.new(2013,10,01)
-  oct.powerProduced = october
+  oct.powerProduced = october.reduce(:+)
   oct.save
  
 

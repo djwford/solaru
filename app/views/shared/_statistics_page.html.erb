@@ -1,105 +1,59 @@
 <!-- #        qty      watts       hours/unit    watt-hours
+
+
 # coffee    10     1200       0.0666667     80
-# toast      2     1300       0.0166667     22
-# waffle     1     1200       0.05          60
 # laptop     1     50         1             50
 # laundry    1     400/2500   0.5/0.583333  1658 
-# microwave  1     900        0.05          45 
-# movie      1     150        2             300
 # house      1     11,280/yr  x             11,280 -->
 
  
   <h4>In total, this array has produced enough energy to...</h4>
-  <div id="stats_carousel" class="carousel slide" data-ride="carousel" data-interval="10000">
-    <ol class="carousel-indicators" id="hidden_carousel_indicators">
-      <li data-target="#stats_carousel" data-slide-to="0" class="active"></li>
-      <li data-target="#stats_carousel" data-slide-to="1"></li>
-      <li data-target="#stats_carousel" data-slide-to="2"></li>
-      <li data-target="#stats_carousel" data-slide-to="3"></li>
-      <li data-target="#stats_carousel" data-slide-to="4"></li>
-      <li data-target="#stats_carousel" data-slide-to="5"></li>
-      <li data-target="#stats_carousel" data-slide-to="6"></li>
-      <li data-target="#stats_carousel" data-slide-to="8"></li>
-    </ol>
+  
 
-    <div class='carousel slide'>
-      <div class="carousel-inner">
-        <% total = @totalOutput %>
+  <div id="stats_carousel">
+    <% total = @totalOutput %>
 
-        <div class="item active">
-          <p class="stats_paragraph"> Brew
-          <span class="quantity">
-            <%= number_with_delimiter( (total/ 80), :precision => 2, :delimeter => ',') %>
-          </span>
-            cups of coffee
-          </p>
-          
-        </div>
-        <div class="item">
-          <p class="stats_paragraph">Burn
-            <span class="quantity">
-              <%= number_with_delimiter( (total/ 22), :precision => 2, :delimeter => ',') %>
-            </span>
-            slices of toast
-          </p>
-          
-        </div>
-        <div class="item">
-          <p class="stats_paragraph">Make
-            <span class="quantity">
-              <%= number_with_delimiter( (total/ 60), :precision => 2, :delimeter => ',') %>
-            </span>
-            waffles
-          </p>
-          
-        </div>
-        <div class="item">
-          <p class="stats_paragraph">Run
-            <span class="quantity">
-              <%= number_with_delimiter( (total/ 50), :precision => 2, :delimeter => ',') %>
-            </span>
-            laptops for one hour
-          </p>
-          
-        </div>
-        <div class="item">
-          <p class="stats_paragraph">Wash and Dry
-            <span class="quantity">
-              <%= number_with_delimiter( (total/ 1658), :precision => 2, :delimeter => ',') %>
-            </span>
-            loads of laundry
-          </p>
-          
-        </div>
-        <div class="item">
-          <p class="stats_paragraph">Microwave
-            <span class="quantity">
-              <%= number_with_delimiter( (total/ 45), :precision => 2, :delimeter => ',') %>
-            </span>
-            frozen burritoes
-          </p>
-          
-        </div>
-        <div class="item">
-          <p class="stats_paragraph">Watch
-            <span class="quantity">
-              <%= number_with_delimiter( (total/ 300), :precision => 2, :delimeter => ',') %>
-            </span>
-            movies on a flatscreen TV
-          </p>
-          
-        </div>
-        <div class="item">
-          <p class="stats_paragraph">Power
-            <span class="quantity">
-              <%= number_with_delimiter( (total/ 11280), :precision => 2, :delimeter => ',') %>
-            </span>
-            homes for a year
-          </p>
-        </div>
-      </div>
-    </div><!-- ends carousel inner -->
+    <div class="stats_item">
+      <p class="verb">Brew
+        <span class="quantity">
+          <%= number_with_delimiter( (total/ 80), :precision => 2, :delimeter => ',') %>
+        </span>
+      </p>
+      <i class="fa fa-coffee"></i>
+      <p class="of_item">cups of coffee</p>
+    </div>
+
+    <div class="stats_item">
+      <p class="verb">Run
+        <span class="quantity">
+          <%= number_with_delimiter( (total/ 50), :precision => 2, :delimeter => ',') %>
+        </span>
+      </p>
+      <i class="fa fa-laptop"></i>
+      <p class="of_item">laptops for one hour</p>
+    </div>
+
+    <div class="stats_item">
+      <p class="verb">Wash and Dry
+        <span class="quantity">
+          <%= number_with_delimiter( (total/ 1658), :precision => 2, :delimeter => ',') %>
+        </span>
+      </p>
+      <%= image_tag('laundry.png') %>
+      <p class="of_item">loads of laundry</p>
+    </div>
+
+    <div class="stats_item">
+      <p class="verb">Power
+        <span class="quantity">
+          <%= number_with_delimiter( (total/ 11280), :precision => 2, :delimeter => ',') %>
+        </span>
+      </p>
+      <i class="fa fa-home"></i>
+      <p class="of_item">homes for a year</p>
+    </div>
+
   </div><!--end carousel -->
-    
+
  
  
