@@ -7,53 +7,36 @@
 # house      1     11,280/yr  x             11,280 -->
 
  
-  <h4>In total, this array has produced enough energy to...</h4>
+
   
 
   <div id="stats_carousel">
     <% total = @totalOutput %>
+    <h4>In total, this array has produced enough power to...</h4>
 
-    <div class="stats_item">
-      <p class="verb">Brew
-        <span class="quantity">
-          <%= number_with_delimiter( (total/ 80), :precision => 2, :delimeter => ',') %>
-        </span>
+
+    <div class="row">
+      <p><i class="fa fa-coffee fa-2x"></i>
+        Brew <%= number_with_delimiter( (total/ 80), :precision => 2, :delimeter => ',') %>cups of coffee
       </p>
-      <i class="fa fa-coffee"></i>
-      <p class="of_item">cups of coffee</p>
     </div>
 
-    <div class="stats_item">
-      <p class="verb">Run
-        <span class="quantity">
-          <%= number_with_delimiter( (total/ 50), :precision => 2, :delimeter => ',') %>
-        </span>
+    <div class="row">
+      <p><i class="fa fa-laptop fa-2x"></i>
+        Run <%= number_with_delimiter( (total/ 50), :precision => 2, :delimeter => ',') %> laptops for one hour
       </p>
-      <i class="fa fa-laptop"></i>
-      <p class="of_item">laptops for one hour</p>
     </div>
-
-    <div class="stats_item">
-      <p class="verb">Wash and Dry
-        <span class="quantity">
-          <%= number_with_delimiter( (total/ 1658), :precision => 2, :delimeter => ',') %>
-        </span>
+    <div class="row">
+      <p><%= image_tag('laundry.png', :id => "laundry_pic") %>Wash and Dry
+      <%= number_with_delimiter( (total/ 1658), :precision => 2, :delimeter => ',') %></p>
+    </div>
+    <div class="row">
+      <p><i class="fa fa-home fa-2x"></i>Power  <%= number_with_delimiter( (total/ 11280), :precision => 2, :delimeter => ',') %>homes for a year
       </p>
-      <%= image_tag('laundry.png', :id => "laundry_pic") %>
-      <p class="of_item">loads of laundry</p>
-    </div>
+    </div>    
 
-    <div class="stats_item">
-      <p class="verb">Power
-        <span class="quantity">
-          <%= number_with_delimiter( (total/ 11280), :precision => 2, :delimeter => ',') %>
-        </span>
-      </p>
-      <i class="fa fa-home"></i>
-      <p class="of_item">homes for a year</p>
-    </div>
 
-  </div><!--end carousel -->
+  </div>
 
  
  

@@ -8,7 +8,7 @@ $green: #00B257;
 $lightBlue: #1F99FF;
 
 @mixin top-border($color) {
-  border-top: 10px solid $color;
+  border-top: 5px solid $color;
 }
 
 body {
@@ -20,10 +20,9 @@ body {
 #main_container{
 }
 #title_panel {
-  @include top-border($green);
   float: left;
-  width: 30%;
   height: 100%;
+  background-color: black;
 
 
 }
@@ -32,7 +31,7 @@ h1{
   color: $uteRed;
   font-size: 5em;
   font-family: 'orbitron-bold';
-  padding: 0.3em;
+  padding-top: 14%;
 }
 
 
@@ -41,7 +40,7 @@ h1{
     -webkit-box-shadow: 7px 7px 1px rgba(0, 0, 10, 0.9);
     -moz-box-shadow:    7px 7px 1px rgba(0, 0, 10, 0.9);
   box-shadow:           7px 7px 1px rgba(0, 0, 10, 0.9);
-  border-radius: 10px;
+  border-radius: 5px;
   }
 
 .fe_container{
@@ -52,12 +51,12 @@ h1{
     margin-top: 1%;
     margin-left: 1em;
   }
-  @include top-border($yellow);
+  @include top-border($lightBlue);
   height: 100%;
   float: left;
 }
 #power_all_time_row{
-  @include top-border($green);
+  @include top-border($lightBlue);
 }
 
 #slides{
@@ -65,19 +64,19 @@ h1{
   float: left;
 }
 
-#countdown_panel{
-  border-top: 10px solid $lightBlue;
+#top_right_panel{
+  @include top-border($lightBlue);
   height: 100%;
 }
 
 #laundry_pic{
-  width: 66px;
-  height: 66px;
+  width:56px;
+  height: 56px;
 }
 
 .fa{
-  height: 55px;
-  width: 55px;
+  height: 35px;
+  width: 35px;
 }
   h4{
     color: $black;
@@ -85,19 +84,9 @@ h1{
   }
 .stats_item{
   color: $black;
-  text-align: center;
+  text-align: left;
   font-size: 2em;
 
-  p{
-    display: inline;
-    width: 100%;
-    float: left;
-    clear: left;
-  }
-  i{
-    margin: 0.3em auto;
-
-  }
 
 }
 
@@ -108,16 +97,41 @@ h1{
   font-family: 'orbitron-bold';
   color: 00FF64;
 }
-  .countdown_section{
+  
+
+  #bottom_row{
+  #vital_stats{
+    @include top-border($lightBlue);
+      background-color: $topGrey;
+      table{
+        width: 55%;
+        height: 12.6em;
+      margin: 15px auto;
+
+    }
+ .countdown_section{
     padding-top: 1em;
   }
   .countdown_descr{
     padding-top: 0.7em;
   }
-
-  #bottom_row{
-  #vital_stats{
-    @include top-border($yellow);
- 
   }
+  }
+
+  #stats_carousel{
+    height: auto;
+    padding: 0.5em;
+    h4{
+      font-size: 1em;
+      padding-bottom: 10px;
+    }
+    font-size: 1em;
+    color: $black;
+    i, img{
+      margin-right: 30px;
+    }
+    .row{
+      border-bottom: 1px solid black;
+      width: 90%;
+    }
   }

@@ -10,6 +10,15 @@
  *
  *= require_self
  *= require font-awesome
- *= require_tree .
+ *= require reset.css
+
+ *= require carousel_styles.css.erb
+ *= require font-awesome.min.css
+ *= require fonts.css.scss
+ *= require framework_and_overrides.css.scss
+ *= require home.css.scss
+ *= require jquery.countdown.css
+ *= require simplegrid.css.scss
+ *= require table_styles.css
  */
 

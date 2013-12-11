@@ -5,7 +5,7 @@ $(document).ready(function(){
  
   $('#top_row').css({"height": ($( window ).height() * (3/10))});
   $('#slides').css({"height": $( window ).height() * (0.369)});
-
+  $('#vital_stats').css({"height": $( window ).height() * (0.369)});
   // set height to viewfinder height
   $(window).resize(function(){
     $("#main_container").height($(window).height());
@@ -46,7 +46,7 @@ $(document).ready(function(){
     chart: {
       borderRadius: 0,
       height: $('#slides').height() * 0.8,
-      width: $('#power_all_time').width() * (1/2),
+      width: $('#slides').width() * (0.95),
       renderTo: "current_production",
       type: 'areaspline',
       backgroundColor: '#C3C9C9',
@@ -83,7 +83,7 @@ $(document).ready(function(){
       tickColor: '#dac092',
       labels: {
         style: {
-          color: '#89A54E'
+          color: '#cc0000'
         }
       }
     },
@@ -91,7 +91,12 @@ $(document).ready(function(){
       title: {
         text: "Watt-Hours", 
         style: {
-          color: '#89A54E'
+          color: '#cc0000'
+        }
+      },
+            labels: {
+        style: {
+          color: '#cc0000'
         }
       }
     },
@@ -157,7 +162,7 @@ $(document).ready(function(){
       tickColor: '#dac092',
       labels: {
         style: {
-          color: '#89A54E'
+          color: '#cc0000'
         }
       }
     },
@@ -180,7 +185,7 @@ $(document).ready(function(){
       },
       labels: {
         style: {
-          color: '#89A54E'
+          color: '#cc0000'
         }
       }
     },
@@ -220,7 +225,7 @@ $(document).ready(function(){
     chart: {
       borderRadius: 0,
       height: $('#slides').height() * (0.8),
-      width: $('#slides').width(),
+      width: $('#slides').width() * (0.95),
       renderTo: "weekly_data",
       type: 'areaspline',
       backgroundColor: '#C3C9C9',
@@ -257,7 +262,7 @@ $(document).ready(function(){
       ],
       labels: {
         style: {
-          color: '#89A54E'
+          color: '#cc0000'
         }
       }
     },
@@ -266,7 +271,12 @@ $(document).ready(function(){
       title: {
         text: "Watt-Hours",
         style: {
-          color: '#89A54E'
+          color: '#cc0000'
+        }
+      },
+                  labels: {
+        style: {
+          color: '#cc0000'
         }
       }
     },

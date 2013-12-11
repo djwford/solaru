@@ -1,9 +1,9 @@
 /* jQuery Countdown styles 1.6.3. */
 .hasCountdown {
-	background-color: #000000;
+	background-color: #C3C9C9;
 	color: #cc0000;
 	font-family: sans-serif;
-	width: 100%;
+	width: 75%;
 	height: 5em;
 }
 .countdown_rtl {
