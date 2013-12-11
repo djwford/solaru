@@ -1,70 +1,72 @@
 
 
+
 <!--  _______________________top  row________________________  -->
 
   <div class="row" id="top_row">
     <div id="title_panel"  class="panel slot-0-1">
       <header>
         <h1> Solar <%= image_tag('BlockU_redweb.png') %> </h1>
-      </header>  
-      <h3>Vital Statistics: Watt-hours</h3>
-      <table id="vital_stats">
-        <tr>
-          <th>Highest Daily Output:</th>
-          <td><%= number_with_delimiter( @highestOutput, :delimeter => ',') %></td>
-        </tr>
-        <tr>
-          <th>Average Daily Output:</th>
-          <td><%= number_with_delimiter( @averageOutput, :delimeter => ',') %></td>
-        </tr>
-        <tr>
-          <th>Total Output:</th>
-          <td><%= number_with_delimiter( @totalOutput, :delimeter => ',') %></td>
-        </tr>
-      </table>
+      </header> 
+
     </div>
  
     <div id="forecast_div" class="panel slot-1-2">
-      <iframe id="forecast_embed" 
-        type="text/html" 
-        height="245" 
-        width="90%" 
-        frameborder="0" 
-        src="http://forecast.io/embed/#lat=40.7650&lon=-111.8500&name=University of Utah&color=#cc0000&text-color=#cc0000&font=helvetica"> 
+      <iframe id="forecast_embed"
+        type="text/html"
+        height="245"
+        width="90%"
+        frameborder="0"
+        src="http://forecast.io/embed/#lat=40.7650&lon=-111.8500&name=University of Utah&color=#cc0000&text-color=#cc0000&font=helvetica">
       </iframe>
     </div>
-    
+   
 
     <div class="panel slot-2-3" id="countdown_panel">
       <div>
         <%= render partial: 'shared/timetosun' %>
-      </div>  
+      </div> 
       <div id="stats">
         <%= render partial: "shared/statistics_page" %>
       </div>
     </div>
   </div>
 <!--  _____________________________________middle row -Carousel ______________________  -->
-  <div class="row"> 
+  <div class="row">
     <div class="row panel slot-0-1-2-3-4-5" id="power_all_time_row">
-      <p id="power_all_time"></p> 
+      <p id="power_all_time"></p>
     </div>
   </div>
 
-  <div class="row">
-   <div id="slides" class="panel slot-0-1-2">
+  <div class="row" id="bottom_row">
+    <div class="panel slot-0-1" id="vital_stats">
+    <table>
+      <tr>
+        <th>Highest Daily Output:</th>
+        <td><%= number_with_delimiter( @highestOutput, :delimeter => ',') %></td>
+      </tr>
+      <tr>
+        <th>Average Daily Output:</th>
+        <td><%= number_with_delimiter( @averageOutput, :delimeter => ',') %></td>
+      </tr>
+      <tr>
+        <th>Total Output:</th>
+        <td><%= number_with_delimiter( @totalOutput, :delimeter => ',') %></td>
+      </tr>
+      <tr>
+        <th>Yesterday's Peak Time:</th>
+        <td> 7:30 PM </td>
+      </tr>
+    </table>
+  </div>
+   <div id="slides" class="panel slot-2-3-4-5">
           <p id="current_production"></p>
           <p id="weekly_data"></p>
 <!--           <p id="monthly_data"></p>
  -->      <a href="#" class="slidesjs-previous slidesjs-navigation"><i class="fa fa-chevron-left "></i></a>
           <a href="#" class="slidesjs-next slidesjs-navigation"><i class="fa fa-chevron-right  icon-large"></i></a>
    </div><!-- end slides  -->
- </div>
-
+</div>
   <!--  _____________________________________bottom row ______________________  -->
-  <div class="row" id="bottom_row">
-    <div id="gauge_chart">
-    </div>
 
-
-  </div><!--end container-->
+   

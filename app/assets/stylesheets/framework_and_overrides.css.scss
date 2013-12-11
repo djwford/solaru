@@ -25,9 +25,7 @@ body {
   width: 30%;
   height: 100%;
 
-  #vital_stats{
-  width: 100%;
-  }
+
 }
 h1{
   text-align: center;
@@ -49,9 +47,9 @@ h1{
 .fe_container{
 }
 
-#forecast_div{  
+#forecast_div{ 
   iframe{
-    margin-top: 3em;
+    margin-top: 1%;
     margin-left: 1em;
   }
   @include top-border($yellow);
@@ -72,6 +70,38 @@ h1{
   height: 100%;
 }
 
+#laundry_pic{
+  width: 66px;
+  height: 66px;
+}
+
+.fa{
+  height: 55px;
+  width: 55px;
+}
+  h4{
+    color: $black;
+    margin: 10px auto;
+  }
+.stats_item{
+  color: $black;
+  text-align: center;
+  font-size: 2em;
+
+  p{
+    display: inline;
+    width: 100%;
+    float: left;
+    clear: left;
+  }
+  i{
+    margin: 0.3em auto;
+
+  }
+
+}
+
+
 #countdownContainer{
   float: left;
   width: 100%;
@@ -83,4 +113,11 @@ h1{
   }
   .countdown_descr{
     padding-top: 0.7em;
+  }
+
+  #bottom_row{
+  #vital_stats{
+    @include top-border($yellow);
+ 
+  }
   }
