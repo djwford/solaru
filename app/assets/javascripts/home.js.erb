@@ -11,6 +11,11 @@ $(document).ready(function(){
     $("#main_container").height($(window).height());
   });
 
+
+  if($(window).height() <= 1100 ){
+    $('.stats_item').css({"font-size": "1em"});
+  };
+
   $(function(){
       $("#slides").slidesjs({
         play: {
@@ -29,15 +34,34 @@ $(document).ready(function(){
     });
 
 
+
+  // function fadeInSequence(item){
+  //     var next = item.next('.stats_item') !=[] ? function(){fadeInSequence($(item).next('.stats_item'));} : function(){fadeInSequence($('.stats_item:first'));};
+  //     $(item).fadeIn(600).delay(5000).hide(600,next);
+  // }
+
+  // fadeInSequence($('.stats_item:first'));
   $('.stats_item').hide();
 
-  function fadeInSequence(item){
-      var next = item.next('.stats_item') !=[] ? function(){fadeInSequence($(item).next('.stats_item'));} : function(){fadeInSequence($('.stats_item:first'));};
-      $(item).fadeIn(600).delay(5000).hide(600,next);
+var elements = $(".stats_item");
+var index = 0;
+
+var doNext = null;
+doNext = function() {
+  $('.stats_item').hide();
+
+  var element = elements.eq(index);
+  element.fadeIn(600);
+
+  if (index < elements.length) {
+    index++;
+    setTimeout(doNext, 8000);
+  } else{
+    index = 0
+    doNext();
   }
-
-  fadeInSequence($('.stats_item:first'));
-
+}
+doNext();
 
   
   // current production -----------------------------------------------
@@ -55,16 +79,16 @@ $(document).ready(function(){
       style: {
         fontSize: '2em',
       },
-      events: {
-        load: function() {
-          setInterval(function() {
-            <%= SolarData.get_current_production %>
-            var chart = $('#current_production').highcharts();
-            chart.series[0].setData(<%= DailyProduction.last["production_totals"] %>)
-              // is the above actually inserting the new data into the setData function?
-          }, 300000);
-        }
-      }
+      // events: {
+      //   load: function() {
+      //     setInterval(function() {
+      //       <%= SolarData.get_current_production %>
+      //       var chart = $('#current_production').highcharts();
+      //       chart.series[0].setData(<%= DailyProduction.last["production_totals"] %>)
+      //         // is the above actually inserting the new data into the setData function?
+      //     }, 300000);
+      //   }
+      // }
     },
     title: {
       text: "Energy Produced today, by the Hour",
@@ -120,7 +144,7 @@ $(document).ready(function(){
       }
     },
     series: [
-      {   
+      {   <% SolarData.get_current_production %>
         name: "Today's Production",
         pointInterval: <%= 300 * 1000 %>,
         pointStart: <%= (DailyProduction.last.for_day.beginning_of_day.to_i)*1000 %>,

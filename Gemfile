@@ -12,7 +12,7 @@ group :production do
   gem 'rails_12factor'
 end
 
-
+gem "chronic", "~> 0.10.2"
 gem 'jquery-rails'
 gem 'devise'
 gem 'figaro'

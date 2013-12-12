@@ -27,6 +27,7 @@
 
 # energy lifetime
 SolarData.get_energy_lifetime
+
 3.times do |x|
   y=WeeklyData.new
   dummy_array = []

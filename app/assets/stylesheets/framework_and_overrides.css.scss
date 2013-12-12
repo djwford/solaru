@@ -52,8 +52,8 @@ h1{
 
 #forecast_div{ 
   iframe{
-    margin-top: 1%;
-    margin-left: 1em;
+    margin-top: 4%;
+    margin-left: 1.5em;
   }
   @include top-border($lightBlue);
   height: 100%;
@@ -87,10 +87,17 @@ h1{
     margin: 10px auto;
   }
 .stats_item{
-  color: $black;
-  text-align: left;
-  font-size: 2em;
 
+ i, img{
+  padding-bottom: 0.5em;
+ }
+  color: $black;
+  text-align: right;
+  font-size: 1.3em;
+  line-height: 1.2em;
+  .amount_of_power{
+    color: $uteRed;
+  }
 
 }
 
@@ -109,7 +116,8 @@ h1{
       background-color: $topGrey;
       table{
         font-size: 0.8em;
-      margin: 15px auto;
+        margin: 30px auto;
+
 
     }
  .countdown_section{
@@ -134,7 +142,6 @@ h1{
       margin-right: 30px;
     }
     .row{
-      border-bottom: 1px solid black;
       width: 90%;
     }
   }

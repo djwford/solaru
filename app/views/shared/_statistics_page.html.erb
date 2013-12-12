@@ -1,10 +1,16 @@
-<!-- #        qty      watts       hours/unit    watt-hours
+<!-- #        qty              watts       hours/unit    watt-hours
 
 
-# coffee    10     1200       0.0666667     80
-# laptop     1     50         1             50
-# laundry    1     400/2500   0.5/0.583333  1658 
-# house      1     11,280/yr  x             11,280 -->
+# coffee    10             1200       0.0666667     80
+# laptop     1             50         1             50
+# laundry    1             400/2500   0.5/0.583333  1658 
+# house      1             11,280/yr  x             11,280 
+# coal       1 ton          1,870     1             1000
+# nat gas    1cuFt          125,000   1             1000
+#petroleum   1 barrel       542,000   1             1000
+
+see http://www.eia.gov/tools/faqs/faq.cfm?id=667&t=2
+-->
 
  
 
@@ -16,25 +22,42 @@
 
 
     <div class="row stats_item">
-      <p><i class="fa fa-coffee fa-2x"></i>
-        Brew <%= number_with_delimiter( (total/ 80), :precision => 2, :delimeter => ',') %>cups of coffee
+      <p><i class="fa fa-coffee fa-3x"></i><br />
+        Brew<br /> <span class="amount_of_power"><%= number_with_delimiter( (total/ 80), :precision => 2, :delimeter => ',') %></span><br />cups of coffee
       </p>
     </div>
 
     <div class="row stats_item">
-      <p><i class="fa fa-laptop fa-2x"></i>
-        Run <%= number_with_delimiter( (total/ 50), :precision => 2, :delimeter => ',') %> laptops for one hour
+      <p><i class="fa fa-laptop fa-3x"></i><br />
+        Run<br /> <span class="amount_of_power"><%= number_with_delimiter( (total/ 50), :precision => 2, :delimeter => ',') %></span><br /> laptops for one hour
       </p>
     </div>
     <div class="row stats_item">
-      <p><%= image_tag('laundry.png', :id => "laundry_pic") %>Wash and Dry
-      <%= number_with_delimiter( (total/ 1658), :precision => 2, :delimeter => ',') %></p>
+      <p><%= image_tag('laundry.png', :id => "laundry_pic") %><br />Wash and Dry<br />
+      <span class="amount_of_power"><%= number_with_delimiter( (total/ 1658), :precision => 2, :delimeter => ',') %></span><br />loads of laundry</p>
     </div>
     <div class="row stats_item">
-      <p><i class="fa fa-home fa-2x"></i>Power  <%= number_with_delimiter( (total/ 11280), :precision => 2, :delimeter => ',') %>homes for a year
+      <p><i class="fa fa-home fa-3x"></i><br />Power<br /><span class="amount_of_power"><%= number_with_delimiter( (total/ 11280), :precision => 2, :delimeter => ',') %></span><br />homes for a year
       </p>
-    </div>    
+    </div>  
 
+    <div class="row stats_item">
+      <p>
+        Equal <br /><span class="amount_of_power"><%= number_with_delimiter((total/ 1870), :precision => 2, :delimeter => ',') %></span><br />tons of coal
+      </p>
+    </div>  
+
+    <div class="row stats_item">
+      <p>
+        Equal<br /> <span class="amount_of_power"><%= number_with_delimiter((total/ 125000), :precision => 2, :delimeter => ',') %></span><br />thousand Cubic Feet of natural gas
+      </p>
+    </div>  
+
+    <div class="row stats_item">
+      <p>
+        Equal <br /><span class="amount_of_power"><%= number_with_delimiter((total/ 542000), :precision => 2, :delimeter => ',') %></span><br />thousand Cubic Feet of natural gas
+      </p>
+    </div>     
 
   </div>
 
