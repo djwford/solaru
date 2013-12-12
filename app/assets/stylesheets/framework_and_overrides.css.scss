@@ -46,6 +46,10 @@ h1{
 .fe_container{
 }
 
+.highcharts-container{
+  margin: 0 auto;
+}
+
 #forecast_div{ 
   iframe{
     margin-top: 1%;
@@ -104,8 +108,7 @@ h1{
     @include top-border($lightBlue);
       background-color: $topGrey;
       table{
-        width: 55%;
-        height: 12.6em;
+        font-size: 0.8em;
       margin: 15px auto;
 
     }

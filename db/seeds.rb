@@ -27,16 +27,16 @@
 
 # energy lifetime
 SolarData.get_energy_lifetime
-# 3.times do |x|
-#   y=WeeklyData.new
-#   dummy_array = []
-#   7.times do
-#     dummy_array  << (Random.rand(100) * 222) / 10
-#   end
-#   y.weeklyProduction = dummy_array
-#   y.forWeek = Time.now - (x + 1).months
-#   y.save
-# end
+3.times do |x|
+  y=WeeklyData.new
+  dummy_array = []
+  7.times do
+    dummy_array  << (Random.rand(100) * 222) / 10
+  end
+  y.weeklyProduction = dummy_array
+  y.forWeek = Time.now - (x + 1).months
+  y.save
+end
 
 # weekly
 

@@ -17,26 +17,26 @@ $(document).ready(function(){
           active: true,
           effect: "slide",
           interval: 5000,
-          auto: true,
+          auto: false,
           swap: true,
           pauseOnHover: true,
-          restartDelay: 2500
+          restartDelay: 5000
     },
         width: $('#slides').width(),
-        height: $('#slides').height() * 0.8,
+        height: $('#slides').height() * 0.9,
         navigation: true
       });
     });
 
 
-  // $('.stats_item').hide();
+  $('.stats_item').hide();
 
-  // function fadeInSequence(stats_item){
-  //     var next = $('stats_item').next() !=null ? function(){fadeInSequence(stats_item).next());} : function(){fadeInSequence($('.stats_item:first'));};
-  //     $(stats_item).fadeIn(500).delay(2000).hide(300,next);
-  // }
+  function fadeInSequence(item){
+      var next = item.next('.stats_item') !=[] ? function(){fadeInSequence($(item).next('.stats_item'));} : function(){fadeInSequence($('.stats_item:first'));};
+      $(item).fadeIn(600).delay(5000).hide(600,next);
+  }
 
-  // fadeInSequence($('.stats_item:first'));
+  fadeInSequence($('.stats_item:first'));
 
 
   
@@ -121,7 +121,7 @@ $(document).ready(function(){
     },
     series: [
       {   
-        name: "Yesterday's Production",
+        name: "Today's Production",
         pointInterval: <%= 300 * 1000 %>,
         pointStart: <%= (DailyProduction.last.for_day.beginning_of_day.to_i)*1000 %>,
         data: <%= DailyProduction.last.production_totals %>
@@ -137,7 +137,7 @@ $(document).ready(function(){
   new Highcharts.Chart({
     chart: {
       borderRadius: 0,
-      width: ( $('#power_all_time').width() ),
+      width: ( $('#power_all_time').width() * 0.95 ),
       height: ($( window ).height() * (1/5)),
       renderTo: "power_all_time",
       backgroundColor: "#C3C9C9",
@@ -212,7 +212,7 @@ $(document).ready(function(){
 
     series: [
       {   
-        name: "All-time Production",
+        name: "Watts Produced",
         pointInterval: <%= 86400000 %>,
         pointStart: <%= (Date.new(2013,9,11).beginning_of_day.to_i) * 1000 %>,
         data: <%= EnergyLifetimeArray.last.raw_array %>
@@ -304,7 +304,7 @@ $(document).ready(function(){
     series: [
       <% WeeklyData.limit(3).order('id desc').each_with_index do |week, index| %>
         {   
-          name: "Week of <%= week.forWeek.strftime("%m-%d")%>",
+          name: "Week of <%= week.forWeek.strftime("%m/%d")%>",
           data: <%= week.weeklyProduction  %>
         }<% if index <= 2 %>,<% end %>
       <% end %>
