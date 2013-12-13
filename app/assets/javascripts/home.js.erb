@@ -144,7 +144,8 @@ doNext();
       }
     },
     series: [
-      {   <% SolarData.get_current_production %>
+        <% SolarData.get_current_production %>
+      { 
         name: "Today's Production",
         pointInterval: <%= 300 * 1000 %>,
         pointStart: <%= (DailyProduction.last.for_day.beginning_of_day.to_i)*1000 %>,
@@ -153,6 +154,7 @@ doNext();
     ]       
   });
 
+        
 
 
 
