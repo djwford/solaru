@@ -41,7 +41,7 @@ end
 
 # weekly
 
-SolarData.get_weekly_production
+# SolarData.get_weekly_production
 
 
 
